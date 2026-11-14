@@ -70,7 +70,14 @@ async function sendPyMessage() {
       body: JSON.stringify({ message: query })
     });
 
-    const data = await response.json();
+    const textResponse = await response.text();
+    let data;
+    try {
+      data = JSON.parse(textResponse);
+    } catch (e) {
+      throw new Error(`Server returned non-JSON response (Status ${response.status}): ${textResponse.slice(0, 100)}`);
+    }
+
     document.getElementById(loadingId).remove();
 
     if (!response.ok) {
@@ -83,7 +90,7 @@ async function sendPyMessage() {
 
   } catch (error) {
     document.getElementById(loadingId).remove();
-    messages.innerHTML += `<div class="bot-msg" style="color:#ef4444;">Network error: Failed to reach /api/ask endpoint.</div>`;
+    messages.innerHTML += `<div class="bot-msg" style="color:#ef4444;">Error: ${escapeHTML(error.message)}</div>`;
   }
   messages.scrollTop = messages.scrollHeight;
 }
