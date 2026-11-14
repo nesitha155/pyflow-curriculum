@@ -2,16 +2,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const botHTML = `
     <div class="py-badge-bot" onclick="togglePyBot()" title="Ask PyBot">
       <span>🐍</span> Python 3.13 Ready
-      <span style="width: 8px; height: 8px; background: #34d399; border-radius: 50%; display: inline-block; box-shadow: 0 0 8px #34d399;"></span>
+      <span style="width: 12px; height: 3px; background: #3b82f6; border-radius: 2px; display: inline-block; box-shadow: 0 0 8px #3b82f6; margin-left: 4px;"></span>
     </div>
 
-    <div class="py-bot-window" id="pyBotWindow">
-      <div class="py-bot-header">
+    <div class="py-bot-window" id="pyBotWindow" style="display: none;">
+      <div class="py-bot-header" style="border-bottom: 2px solid #3b82f6;">
         <div style="display:flex; align-items:center; gap:8px;">
           <span>🤖</span>
           <div>
             <div style="font-weight:700; font-size:13.5px;">PyBot 3.13</div>
-            <div style="font-size:11px; color:#34d399;">● Online • Powered by Gemini AI</div>
+            <div style="font-size:11px; color:#3b82f6; display:flex; align-items:center; gap:4px;">
+              <span style="display:inline-block; width:16px; height:2px; background:#3b82f6;"></span> Online • Powered by Gemini AI
+            </div>
           </div>
         </div>
         <button onclick="togglePyBot()" style="background:none; border:none; color:#94a3b8; font-size:18px; cursor:pointer;">&times;</button>
@@ -31,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       <div class="py-bot-input-area">
         <input type="text" id="pyBotInput" placeholder="Ask a Python question..." onkeypress="if(event.key==='Enter') sendPyMessage()">
-        <button onclick="sendPyMessage()">Send</button>
+        <button onclick="sendPyMessage()" style="background:#3b82f6;">Send</button>
       </div>
     </div>
   `;
@@ -71,12 +73,17 @@ async function sendPyMessage() {
     const data = await response.json();
     document.getElementById(loadingId).remove();
 
-    const formattedReply = formatGeminiOutput(data.reply || data.error);
+    if (!response.ok) {
+      messages.innerHTML += `<div class="bot-msg" style="color:#ef4444;">Error: ${escapeHTML(data.error || "Unknown server error")}</div>`;
+      return;
+    }
+
+    const formattedReply = formatGeminiOutput(data.reply || "No reply received.");
     messages.innerHTML += `<div class="bot-msg">${formattedReply}</div>`;
 
   } catch (error) {
     document.getElementById(loadingId).remove();
-    messages.innerHTML += `<div class="bot-msg">Network error. Please check your connection!</div>`;
+    messages.innerHTML += `<div class="bot-msg" style="color:#ef4444;">Network error: Failed to reach /api/ask endpoint.</div>`;
   }
   messages.scrollTop = messages.scrollHeight;
 }
@@ -89,7 +96,7 @@ function escapeHTML(str) {
 
 function formatGeminiOutput(text) {
   return escapeHTML(text)
-    .replace(/```python([\s\S]*?)```/g, '<code style="display:block; background:#0f172a; color:#34d399; padding:8px; border-radius:6px; margin-top:6px; font-family:monospace; white-space:pre-wrap;">$1</code>')
+    .replace(/```python([\s\S]*?)```/g, '<code style="display:block; background:#0f172a; color:#60a5fa; padding:8px; border-radius:6px; margin-top:6px; font-family:monospace; white-space:pre-wrap;">$1</code>')
     .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
     .replace(/\n/g, '<br>');
 }
