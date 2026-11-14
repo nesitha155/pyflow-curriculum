@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PyFlow — What is a Web API?</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Quiz Specific Styles */
+    .quiz-card {
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .quiz-btn {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      padding: 10px 14px;
+      border-radius: 8px;
+      text-align: left;
+      font-size: 14px;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .quiz-btn:hover {
+      background: #e2e8f0;
+      border-color: #94a3b8;
+    }
+    .quiz-btn.selected {
+      background: #e0f2fe !important;
+      border-color: #0284c7 !important;
+      color: #0369a1;
+      font-weight: 600;
+    }
+    .quiz-btn.correct {
+      background: #d1fae5 !important;
+      border-color: #10b981 !important;
+      color: #065f46;
+      font-weight: 600;
+    }
+    .quiz-btn.incorrect {
+      background: #fee2e2 !important;
+      border-color: #ef4444 !important;
+      color: #991b1b;
+    }
+    .check-quiz-btn {
+      display: block;
+      width: 100%;
+      background: #0f172a;
+      color: #fff;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: background 0.2s ease;
+    }
+    .check-quiz-btn:hover {
+      background: #0d9488;
+    }
+    .quiz-results {
+      margin-top: 16px;
+      padding: 18px;
+      border-radius: 12px;
+      background: rgba(13, 148, 136, 0.1);
+      border: 1px solid rgba(13, 148, 136, 0.3);
+      text-align: center;
+      font-weight: 600;
+      color: #0f766e;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Soft frosted overlay -->
+  <div class="overlay"></div>
+
+  <!-- TOP NAVIGATION BAR -->
+  <nav>
+    <a href="level-5.html" class="logo" style="text-decoration: none; color: inherit;">
+      <span class="logo-dot">🐍</span>
+      <span>PyFlow</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="lessons.html">Lessons</a></li>
+      <li><a href="level-5.html">Level 5 Hub</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <a href="level-5.html" class="btn-dark">← Back to Hub</a>
+    </div>
+  </nav>
+
+  <!-- LESSON CONTENT CONTAINER -->
+  <main class="lesson-content-container">
+    
+    <!-- LESSON HEADER -->
+    <div style="margin-bottom: 30px;">
+      <div class="card-badge" style="display: inline-block; margin-bottom: 8px;">Level 5 • Topic 01</div>
+      <h1 style="font-size: 32px; font-weight: 800; color: #111827; letter-spacing: -1px;">What is a Web API?</h1>
+      <p style="color: #4b5563; font-size: 15px; margin-top: 4px;">Understand how software applications talk to each other across the internet using requests and responses.</p>
+    </div>
+
+    <!-- SECTION 1: THE RESTAURANT ANALOGY -->
+    <section class="lesson-card" style="display: block; margin-bottom: 20px; padding: 28px;">
+      <div class="card-badge" style="display: inline-block; margin-bottom: 10px;">The Waiter Analogy</div>
+      <h2 style="font-size: 20px; font-weight: 700; margin-bottom: 12px; color: #111827;">🍽️ How APIs Work in Real Life</h2>
+      <p style="color: #4b5563; font-size: 15px; line-height: 1.6; margin-bottom: 14px;">
+        Imagine sitting at a restaurant table. You (the client application) look at the menu and decide what you want. But you can't walk back into the kitchen (the server and database) to cook it yourself. So, you give your order to a <strong>Waiter</strong>. The waiter takes your request to the kitchen, gets your food, and brings it back to your table. 
+      </p>
+      <p style="color: #4b5563; font-size: 15px; line-height: 1.6;">
+        An <strong>API (Application Programming Interface)</strong> is that digital waiter. It takes requests from your browser or app, asks the server for data, and delivers the response back safely.
+      </p>
+    </section>
+
+    <!-- SECTION 2: WHAT IS JSON? -->
+    <section class="lesson-card" style="display: block; margin-bottom: 30px; padding: 28px;">
+      <div class="card-badge" style="display: inline-block; margin-bottom: 10px;">Data Format</div>
+      <h2 style="font-size: 20px; font-weight: 700; margin-bottom: 12px; color: #111827;">📦 JSON: The Universal Language of the Web</h2>
+      <p style="color: #4b5563; font-size: 15px; line-height: 1.6; margin-bottom: 14px;">
+        When web APIs talk to each other, they usually exchange data in a format called <strong>JSON (JavaScript Object Notation)</strong>. It looks almost identical to Python dictionaries!
+      </p>
+      <div style="background: #0f172a; color: #e2e8f0; font-family: 'JetBrains Mono', monospace; font-size: 13.5px; padding: 16px; border-radius: 12px; overflow-x: auto;">
+        <span style="color: #64748b;">// Example of a JSON response from a robot API</span><br>
+        {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #38bdf8;">"robot_id"</span>: <span style="color: #34d399;">"RX-90"</span>,<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #38bdf8;">"status"</span>: <span style="color: #34d399;">"online"</span>,<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #38bdf8;">"battery_level"</span>: <span style="color: #fbbf24;">92</span><br>
+        }
+      </div>
+    </section>
+
+    <!-- SELF-GRADING QUIZ SECTION -->
+    <section class="lesson-card" style="display: block; margin-bottom: 30px; padding: 28px;">
+      <div class="card-badge" style="display: inline-block; margin-bottom: 10px;">Knowledge Check</div>
+      <h2 style="font-size: 22px; font-weight: 700; margin-bottom: 20px; color: #111827;">🧠 Test Your Knowledge: Web APIs Quiz</h2>
+
+      <!-- Question 1 -->
+      <div class="quiz-card" data-q="1">
+        <p style="font-weight: 600; color: #111827; margin-bottom: 4px;">1. In the restaurant analogy, what does the API represent?</p>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 1, false)">A) The kitchen chef cooking meals</button>
+          <button class="quiz-btn" data-correct="true" onclick="selectOption(this, 1, true)">B) The waiter taking orders and delivering responses</button>
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 1, false)">C) The customer sitting at the table</button>
+        </div>
+      </div>
+
+      <!-- Question 2 -->
+      <div class="quiz-card" data-q="2">
+        <p style="font-weight: 600; color: #111827; margin-bottom: 4px;">2. What does API stand for?</p>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 2, false)">A) Automated Python Integration</button>
+          <button class="quiz-btn" data-correct="true" onclick="selectOption(this, 2, true)">B) Application Programming Interface</button>
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 2, false)">C) Advanced Protocol Index</button>
+        </div>
+      </div>
+
+      <!-- Question 3 -->
+      <div class="quiz-card" data-q="3">
+        <p style="font-weight: 600; color: #111827; margin-bottom: 4px;">3. What is JSON primarily used for in web APIs?</p>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-correct="true" onclick="selectOption(this, 3, true)">A) Structuring and exchanging data between systems</button>
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 3, false)">B) Styling website fonts and colors</button>
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 3, false)">C) Compiling Python code into machine code</button>
+        </div>
+      </div>
+
+      <!-- Question 4 -->
+      <div class="quiz-card" data-q="4">
+        <p style="font-weight: 600; color: #111827; margin-bottom: 4px;">4. Which data structure in Python looks almost identical to a JSON object?</p>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 4, false)">A) Tuple</button>
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 4, false)">B) List</button>
+          <button class="quiz-btn" data-correct="true" onclick="selectOption(this, 4, true)">C) Dictionary</button>
+        </div>
+      </div>
+
+      <!-- Question 5 -->
+      <div class="quiz-card" data-q="5">
+        <p style="font-weight: 600; color: #111827; margin-bottom: 4px;">5. Who sends the request in a typical client-server web architecture?</p>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 5, false)">A) The server</button>
+          <button class="quiz-btn" data-correct="true" onclick="selectOption(this, 5, true)">B) The client (such as a web browser or mobile app)</button>
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 5, false)">C) The router</button>
+        </div>
+      </div>
+
+      <!-- Check Answers Button -->
+      <button class="check-quiz-btn" onclick="checkAllAnswers()">Check My Answers</button>
+      
+      <!-- Results Greeting Box -->
+      <div class="quiz-results" id="quiz-results"></div>
+
+    </section>
+
+    <!-- NAVIGATION TO NEXT TOPIC -->
+    <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.7); padding: 20px; border-radius: 16px; border: 1px solid rgba(0,0,0,0.05);">
+      <a href="level-5.html" style="text-decoration: none; color: #4b5563; font-weight: 600; font-size: 14px;">← Back to Level 5 Hub</a>
+      <a href="fastapi-basics.html" style="text-decoration: none; background: #0f172a; color: #fff; padding: 10px 20px; border-radius: 10px; font-weight: 600; font-size: 14px;">Next: FastAPI Basics →</a>
+    </div>
+
+  </main>
+
+  <div class="mini-stat"><small>Platform Version</small><strong>PyFlow v1.0</strong></div>
+    <div class="mini-status">
+      <span class="pulse-dot"></span> Python 3.13 Ready
+    </div>
+  </footer>
+
+  <!-- QUIZ INTERACTIVITY SCRIPT -->
+  <script>
+    let userAnswers = {};
+
+    function selectOption(button, questionNum, isCorrect) {
+      const card = button.closest('.quiz-card');
+      const buttons = card.querySelectorAll('.quiz-btn');
+      
+      buttons.forEach(btn => btn.classList.remove('selected'));
+      button.classList.add('selected');
+      userAnswers[questionNum] = isCorrect;
+    }
+
+    function checkAllAnswers() {
+      let score = 0;
+      let total = 5;
+
+      if (Object.keys(userAnswers).length < total) {
+        alert("Please answer all 5 questions before checking!");
+        return;
+      }
+
+      for (let i = 1; i <= total; i++) {
+        const card = document.querySelector(`.quiz-card[data-q="${i}"]`);
+        const buttons = card.querySelectorAll('.quiz-btn');
+        
+        buttons.forEach(btn => {
+          const isCorrectBtn = btn.getAttribute('data-correct') === 'true';
+          const isSelected = btn.classList.contains('selected');
+          
+          btn.style.pointerEvents = 'none';
+
+          if (isCorrectBtn) {
+            btn.classList.add('correct');
+          } else if (isSelected && !isCorrectBtn) {
+            btn.classList.add('incorrect');
+          }
+        });
+
+        if (userAnswers[i] === true) {
+          score++;
+        }
+      }
+
+      const resultsDiv = document.getElementById('quiz-results');
+      resultsDiv.style.display = 'block';
+
+      let message = "";
+      if (score === 5) {
+        message = `🎉 Excellent! You scored 5 out of 5! You're ready to build your first API server.`;
+      } else if (score >= 3) {
+        message = `👍 Good job! You scored ${score} out of 5. Review the restaurant analogy above!`;
+      } else {
+        message = `💪 You scored ${score} out of 5. Read through the concepts and give it another try!`;
+      }
+
+      resultsDiv.innerHTML = message;
+    }
+  </script>
+
+<script src="bot.js"></script>
+</body>
+</html>

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PyFlow — Lists &amp; Tuples</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Quiz Specific Styles */
+    .quiz-card {
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .quiz-btn {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      padding: 10px 14px;
+      border-radius: 8px;
+      text-align: left;
+      font-size: 14px;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .quiz-btn:hover {
+      background: #e2e8f0;
+      border-color: #94a3b8;
+    }
+    .quiz-btn.selected {
+      background: #e0f2fe !important;
+      border-color: #0284c7 !important;
+      color: #0369a1;
+      font-weight: 600;
+    }
+    .quiz-btn.correct {
+      background: #d1fae5 !important;
+      border-color: #10b981 !important;
+      color: #065f46;
+      font-weight: 600;
+    }
+    .quiz-btn.incorrect {
+      background: #fee2e2 !important;
+      border-color: #ef4444 !important;
+      color: #991b1b;
+    }
+    .check-quiz-btn {
+      display: block;
+      width: 100%;
+      background: #0f172a;
+      color: #fff;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: background 0.2s ease;
+    }
+    .check-quiz-btn:hover {
+      background: #0d9488;
+    }
+    .quiz-results {
+      margin-top: 16px;
+      padding: 18px;
+      border-radius: 12px;
+      background: rgba(13, 148, 136, 0.1);
+      border: 1px solid rgba(13, 148, 136, 0.3);
+      text-align: center;
+      font-weight: 600;
+      color: #0f766e;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Soft frosted overlay -->
+  <div class="overlay"></div>
+
+  <!-- TOP NAVIGATION BAR -->
+  <nav>
+    <a href="data-functions.html" class="logo" style="text-decoration: none; color: inherit;">
+      <span class="logo-dot">🐍</span>
+      <span>PyFlow</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="lessons.html">Lessons</a></li>
+      <li><a href="data-functions.html">Data &amp; Functions</a></li>
+      <li><a href="foundations.html">Foundations</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <a href="data-functions.html" class="btn-dark">← Back to Hub</a>
+    </div>
+  </nav>
+
+  <!-- LESSON CONTENT CONTAINER -->
+  <main class="lesson-content-container">
+    
+    <!-- LESSON HEADER -->
+    <div style="margin-bottom: 30px;">
+      <div class="card-badge" style="display: inline-block; margin-bottom: 8px;">Level 3 • Topic 02</div>
+      <h1 style="font-size: 32px; font-weight: 800; color: #111827; letter-spacing: -1px;">Lists &amp; Tuples</h1>
+      <p style="color: #4b5563; font-size: 15px; margin-top: 4px;">Learn how to store multiple items inside a single variable using square brackets <code>[]</code> and parentheses <code>()</code>.</p>
+    </div>
+
+    <!-- SECTION 1: PYTHON LISTS -->
+    <section class="lesson-card" style="display: block; margin-bottom: 20px; padding: 28px;">
+      <div class="card-badge" style="display: inline-block; margin-bottom: 10px;">Changeable Collections</div>
+      <h2 style="font-size: 20px; font-weight: 700; margin-bottom: 12px; color: #111827;">🛍️ Python Lists (Like a Shopping Bag)</h2>
+      <p style="color: #4b5563; font-size: 15px; line-height: 1.6; margin-bottom: 14px;">
+        Instead of creating 10 separate variables for 10 items, you can put them all in one <strong>List</strong> using square brackets <code>[]</code>. Just like a shopping bag, you can add new items, remove items, or swap them anytime!
+      </p>
+      <div style="background: #0f172a; color: #e2e8f0; font-family: 'JetBrains Mono', monospace; font-size: 13.5px; padding: 16px; border-radius: 12px; overflow-x: auto;">
+        <span style="color: #64748b;"># Create a list of snacks</span><br>
+        snacks = [<span style="color: #34d399;">"Chips"</span>, <span style="color: #34d399;">"Cookies"</span>, <span style="color: #34d399;">"Juice"</span>]<br><br>
+        <span style="color: #64748b;"># Add a new item to the end</span><br>
+        snacks.append(<span style="color: #34d399;">"Apple"</span>)<br>
+        <span style="color: #cbd5e1;">print</span>(snacks)
+      </div>
+    </section>
+
+    <!-- SECTION 2: INDEXING -->
+    <section class="lesson-card" style="display: block; margin-bottom: 20px; padding: 28px;">
+      <div class="card-badge" style="display: inline-block; margin-bottom: 10px;">Finding Items</div>
+      <h2 style="font-size: 20px; font-weight: 700; margin-bottom: 12px; color: #111827;">🔢 Counting Starts at Zero (Indexing)</h2>
+      <p style="color: #4b5563; font-size: 15px; line-height: 1.6; margin-bottom: 14px;">
+        Every item in a list has a position number called an <strong>index</strong>. In Python, counting always starts at <strong>0</strong>—so the very first item is at index <code>[0]</code>!
+      </p>
+      <div style="background: #0f172a; color: #e2e8f0; font-family: 'JetBrains Mono', monospace; font-size: 13.5px; padding: 16px; border-radius: 12px; overflow-x: auto;">
+        colors = [<span style="color: #34d399;">"Red"</span>, <span style="color: #34d399;">"Green"</span>, <span style="color: #34d399;">"Blue"</span>]<br><br>
+        <span style="color: #cbd5e1;">print</span>(colors[<span style="color: #fbbf24;">0</span>])   <span style="color: #64748b;"># Prints "Red" (1st item)</span><br>
+        <span style="color: #cbd5e1;">print</span>(colors[<span style="color: #fbbf24;">2</span>])   <span style="color: #64748b;"># Prints "Blue" (3rd item)</span><br>
+        <span style="color: #cbd5e1;">print</span>(colors[<span style="color: #fbbf24;">-1</span>])  <span style="color: #64748b;"># Prints "Blue" (Last item!)</span>
+      </div>
+    </section>
+
+    <!-- SECTION 3: TUPLES -->
+    <section class="lesson-card" style="display: block; margin-bottom: 30px; padding: 28px;">
+      <div class="card-badge" style="display: inline-block; margin-bottom: 10px;">Locked Collections</div>
+      <h2 style="font-size: 20px; font-weight: 700; margin-bottom: 12px; color: #111827;">🔒 Python Tuples (Locked Time Capsules)</h2>
+      <p style="color: #4b5563; font-size: 15px; line-height: 1.6; margin-bottom: 14px;">
+        A <strong>Tuple</strong> looks just like a list, except it uses round parentheses <code>()</code>. Once you create a tuple, it is <strong>locked</strong>—you cannot add, remove, or change any items inside it. Use tuples for data that should never change, like GPS coordinates or birthdates!
+      </p>
+      <div style="background: #0f172a; color: #e2e8f0; font-family: 'JetBrains Mono', monospace; font-size: 13.5px; padding: 16px; border-radius: 12px; overflow-x: auto;">
+        <span style="color: #64748b;"># Coordinates locked inside a tuple</span><br>
+        spawn_point = (<span style="color: #fbbf24;">100</span>, <span style="color: #fbbf24;">250</span>)<br><br>
+        <span style="color: #cbd5e1;">print</span>(spawn_point[<span style="color: #fbbf24;">0</span>])  <span style="color: #64748b;"># Prints 100</span><br>
+        <span style="color: #64748b;"># spawn_point[0] = 500  --> Error! Tuples cannot be changed.</span>
+      </div>
+    </section>
+
+    <!-- SELF-GRADING QUIZ SECTION -->
+    <section class="lesson-card" style="display: block; margin-bottom: 30px; padding: 28px;">
+      <div class="card-badge" style="display: inline-block; margin-bottom: 10px;">Knowledge Check</div>
+      <h2 style="font-size: 22px; font-weight: 700; margin-bottom: 20px; color: #111827;">🧠 Test Your Knowledge: Lists &amp; Tuples Quiz</h2>
+
+      <!-- Question 1 -->
+      <div class="quiz-card" data-q="1">
+        <p style="font-weight: 600; color: #111827; margin-bottom: 4px;">1. Which brackets are used to create a Python List?</p>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-correct="true" onclick="selectOption(this, 1, true)">A) Square brackets [ ]</button>
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 1, false)">B) Round parentheses ( )</button>
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 1, false)">C) Curly braces { }</button>
+        </div>
+      </div>
+
+      <!-- Question 2 -->
+      <div class="quiz-card" data-q="2">
+        <p style="font-weight: 600; color: #111827; margin-bottom: 4px;">2. In Python, what index number represents the VERY FIRST item in a list?</p>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 2, false)">A) 1</button>
+          <button class="quiz-btn" data-correct="true" onclick="selectOption(this, 2, true)">B) 0</button>
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 2, false)">C) -1</button>
+        </div>
+      </div>
+
+      <!-- Question 3 -->
+      <div class="quiz-card" data-q="3">
+        <p style="font-weight: 600; color: #111827; margin-bottom: 4px;">3. Which method adds a new item to the end of a list?</p>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 3, false)">A) .push()</button>
+          <button class="quiz-btn" data-correct="true" onclick="selectOption(this, 3, true)">B) .append()</button>
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 3, false)">C) .insert_end()</button>
+        </div>
+      </div>
+
+      <!-- Question 4 -->
+      <div class="quiz-card" data-q="4">
+        <p style="font-weight: 600; color: #111827; margin-bottom: 4px;">4. What is the main difference between a List and a Tuple?</p>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 4, false)">A) Lists only hold numbers, Tuples only hold text</button>
+          <button class="quiz-btn" data-correct="true" onclick="selectOption(this, 4, true)">B) Lists can be changed after creation, Tuples cannot</button>
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 4, false)">C) Tuples can hold unlimited items, Lists hold max 10</button>
+        </div>
+      </div>
+
+      <!-- Question 5 -->
+      <div class="quiz-card" data-q="5">
+        <p style="font-weight: 600; color: #111827; margin-bottom: 4px;">5. Given <code>pets = ["Dog", "Cat", "Bird"]</code>, what does <code>pets[1]</code> return?</p>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 5, false)">A) "Dog"</button>
+          <button class="quiz-btn" data-correct="true" onclick="selectOption(this, 5, true)">B) "Cat"</button>
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 5, false)">C) "Bird"</button>
+        </div>
+      </div>
+
+      <!-- Check Answers Button -->
+      <button class="check-quiz-btn" onclick="checkAllAnswers()">Check My Answers</button>
+      
+      <!-- Results Greeting Box -->
+      <div class="quiz-results" id="quiz-results"></div>
+
+    </section>
+
+    <!-- NAVIGATION TO PREVIOUS & NEXT TOPIC -->
+    <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.7); padding: 20px; border-radius: 16px; border: 1px solid rgba(0,0,0,0.05);">
+      <a href="functions.html" style="text-decoration: none; color: #4b5563; font-weight: 600; font-size: 14px;">← Prev: Functions</a>
+      <a href="dictionaries-sets.html" style="text-decoration: none; background: #0f172a; color: #fff; padding: 10px 20px; border-radius: 10px; font-weight: 600; font-size: 14px;">Next: Dictionaries &amp; Sets →</a>
+    </div>
+
+  </main>
+
+  <div class="mini-stat"><small>Platform Version</small><strong>PyFlow v1.0</strong></div>
+    <div class="mini-status">
+      <span class="pulse-dot"></span> Python 3.13 Ready
+    </div>
+  </footer>
+
+  <!-- QUIZ INTERACTIVITY SCRIPT -->
+  <script>
+    let userAnswers = {};
+
+    function selectOption(button, questionNum, isCorrect) {
+      const card = button.closest('.quiz-card');
+      const buttons = card.querySelectorAll('.quiz-btn');
+      
+      buttons.forEach(btn => btn.classList.remove('selected'));
+      button.classList.add('selected');
+      userAnswers[questionNum] = isCorrect;
+    }
+
+    function checkAllAnswers() {
+      let score = 0;
+      let total = 5;
+
+      if (Object.keys(userAnswers).length < total) {
+        alert("Please answer all 5 questions before checking!");
+        return;
+      }
+
+      for (let i = 1; i <= total; i++) {
+        const card = document.querySelector(`.quiz-card[data-q="${i}"]`);
+        const buttons = card.querySelectorAll('.quiz-btn');
+        
+        buttons.forEach(btn => {
+          const isCorrectBtn = btn.getAttribute('data-correct') === 'true';
+          const isSelected = btn.classList.contains('selected');
+          
+          btn.style.pointerEvents = 'none';
+
+          if (isCorrectBtn) {
+            btn.classList.add('correct');
+          } else if (isSelected && !isCorrectBtn) {
+            btn.classList.add('incorrect');
+          }
+        });
+
+        if (userAnswers[i] === true) {
+          score++;
+        }
+      }
+
+      const resultsDiv = document.getElementById('quiz-results');
+      resultsDiv.style.display = 'block';
+
+      let message = "";
+      if (score === 5) {
+        message = `🎉 Awesome job! You scored 5 out of 5! You've mastered Lists & Tuples.`;
+      } else if (score >= 3) {
+        message = `👍 Solid work! You scored ${score} out of 5. Review the highlighted answers to lock it in!`;
+      } else {
+        message = `💪 You scored ${score} out of 5. Take a quick look at the examples above and try again!`;
+      }
+
+      resultsDiv.innerHTML = message;
+    }
+  </script>
+
+<script src="bot.js"></script>
+</body>
+</html>

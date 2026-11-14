@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PyFlow — Data Types Cyber-Deck</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Unique Cyber-Deck Dashboard Styling for datatypes.html */
+    .deck-container {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+      margin-bottom: 30px;
+    }
+    .deck-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid rgba(17, 24, 39, 0.08);
+      padding-bottom: 14px;
+      flex-wrap: wrap;
+    }
+    .deck-tab {
+      background: rgba(17, 24, 39, 0.05);
+      border: 1px solid rgba(17, 24, 39, 0.1);
+      padding: 8px 18px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #374151;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+    .deck-tab:hover {
+      background: rgba(45, 212, 191, 0.15);
+      color: #0d9488;
+    }
+    .deck-tab.active-tab {
+      background: #0f172a;
+      color: #2dd4bf;
+      border-color: #0f172a;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.2);
+    }
+    .deck-panel {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+    .deck-panel.active-panel {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Soft frosted overlay -->
+  <div class="overlay"></div>
+
+  <!-- TOP NAVIGATION BAR -->
+  <nav>
+    <a href="foundations.html" class="logo" style="text-decoration: none; color: inherit;">
+      <span class="logo-dot">🐍</span>
+      <span>PyFlow</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="lessons.html">Lessons</a></li>
+      <li><a href="foundations.html" class="active-link">Foundations</a></li>
+      <li><a href="index.html">Home</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <a href="foundations.html" class="btn-dark">← Back to Topics</a>
+    </div>
+  </nav>
+
+  <!-- LESSON CONTENT CONTAINER -->
+  <main class="lesson-content-container">
+    
+    <!-- TOPIC HEADER BANNER -->
+    <div style="margin-bottom: 24px;">
+      <div class="card-badge" style="display: inline-block; margin-bottom: 8px;">Protocol 03 • Level 1</div>
+      <h1 style="font-size: 32px; font-weight: 800; color: #111827; letter-spacing: -1px;">Data Types Cyber-Deck</h1>
+      <p style="color: #4b5563; font-size: 15px; margin-top: 4px;">Inspect how Python classifies data streams into strings, numbers, and logic gates.</p>
+    </div>
+
+    <!-- CYBER-DECK INTERACTIVE DASHBOARD -->
+    <div class="deck-container">
+      <h3 style="font-size: 18px; font-weight: 700; color: #111827; margin-bottom: 6px;">⚡ Type Inspector Pipeline</h3>
+      <p style="font-size: 13px; color: #6b7280; margin-bottom: 18px;">Select a data stream frequency below to analyze its memory structure:</p>
+
+      <!-- Interactive Switcher Tabs -->
+      <div class="deck-tabs">
+        <button class="deck-tab active-tab" onclick="switchDeck('str', event)">str (String)</button>
+        <button class="deck-tab" onclick="switchDeck('int', event)">int (Integer)</button>
+        <button class="deck-tab" onclick="switchDeck('float', event)">float (Decimal)</button>
+        <button class="deck-tab" onclick="switchDeck('bool', event)">bool (Boolean)</button>
+      </div>
+
+      <!-- PANEL 1: STRING -->
+      <div id="panel-str" class="deck-panel active-panel">
+        <p style="font-size: 14px; color: #374151; line-height: 1.6; margin-bottom: 14px;">
+          <strong>String (<code>str</code>):</strong> Used for textual data. Strings must always be wrapped in single <code>'...'</code> or double <code>"..."</code> quotation marks. Even numbers wrapped in quotes are treated as text.
+        </p>
+        <div class="code-snippet-box" style="margin: 0;">
+          <div class="code-bar">
+            <span>inspector_stream.py</span>
+            <span style="color: #10b981;">● Active Frequency: str</span>
+          </div>
+          <code>
+            msg = <span style="color: #10b981;">"Secure Link Established"</span><br>
+            <span style="color: #0d9488; font-weight: 600;">print</span>(<span style="color: #0d9488;">type</span>(msg))
+          </code>
+          <div class="terminal-output" style="display: block; margin-top: 12px;">
+            <span style="color: #2dd4bf;">> Output:</span> <span style="color: #ffffff; font-weight: 600;">&lt;class 'str'&gt;</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANEL 2: INTEGER -->
+      <div id="panel-int" class="deck-panel">
+        <p style="font-size: 14px; color: #374151; line-height: 1.6; margin-bottom: 14px;">
+          <strong>Integer (<code>int</code>):</strong> Represents whole numbers without fractional or decimal components. They can be positive, negative, or zero, and support unlimited memory magnitude.
+        </p>
+        <div class="code-snippet-box" style="margin: 0;">
+          <div class="code-bar">
+            <span>inspector_stream.py</span>
+            <span style="color: #f59e0b;">● Active Frequency: int</span>
+          </div>
+          <code>
+            battery_level = <span style="color: #f59e0b;">100</span><br>
+            <span style="color: #0d9488; font-weight: 600;">print</span>(<span style="color: #0d9488;">type</span>(battery_level))
+          </code>
+          <div class="terminal-output" style="display: block; margin-top: 12px;">
+            <span style="color: #2dd4bf;">> Output:</span> <span style="color: #ffffff; font-weight: 600;">&lt;class 'int'&gt;</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANEL 3: FLOAT -->
+      <div id="panel-float" class="deck-panel">
+        <p style="font-size: 14px; color: #374151; line-height: 1.6; margin-bottom: 14px;">
+          <strong>Float (<code>float</code>):</strong> Used for numbers containing a decimal point. Essential for high-precision calculations, coordinates, or scientific measurements.
+        </p>
+        <div class="code-snippet-box" style="margin: 0;">
+          <div class="code-bar">
+            <span>inspector_stream.py</span>
+            <span style="color: #3b82f6;">● Active Frequency: float</span>
+          </div>
+          <code>
+            system_temp = <span style="color: #3b82f6;">36.6</span><br>
+            <span style="color: #0d9488; font-weight: 600;">print</span>(<span style="color: #0d9488;">type</span>(system_temp))
+          </code>
+          <div class="terminal-output" style="display: block; margin-top: 12px;">
+            <span style="color: #2dd4bf;">> Output:</span> <span style="color: #ffffff; font-weight: 600;">&lt;class 'float'&gt;</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PANEL 4: BOOLEAN -->
+      <div id="panel-bool" class="deck-panel">
+        <p style="font-size: 14px; color: #374151; line-height: 1.6; margin-bottom: 14px;">
+          <strong>Boolean (<code>bool</code>):</strong> Binary logic gates evaluating strictly to <code>True</code> or <code>False</code> (capitalized!). Used heavily in conditional branching and system checks.
+        </p>
+        <div class="code-snippet-box" style="margin: 0;">
+          <div class="code-bar">
+            <span>inspector_stream.py</span>
+            <span style="color: #8b5cf6;">● Active Frequency: bool</span>
+          </div>
+          <code>
+            firewall_active = <span style="color: #8b5cf6;">True</span><br>
+            <span style="color: #0d9488; font-weight: 600;">print</span>(<span style="color: #0d9488;">type</span>(firewall_active))
+          </code>
+          <div class="terminal-output" style="display: block; margin-top: 12px;">
+            <span style="color: #2dd4bf;">> Output:</span> <span style="color: #ffffff; font-weight: 600;">&lt;class 'bool'&gt;</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- SECONDARY INFO BOX -->
+    <div class="deck-container">
+      <h3 style="font-size: 18px; font-weight: 700; color: #111827; margin-bottom: 10px;">⚠️ Type Collisions & TypeError</h3>
+      <p style="font-size: 14px; color: #374151; line-height: 1.6;">
+        Python refuses to guess when mixing incompatible types. For instance, attempting to concatenate text and numbers directly (like <code>"Level: " + 5</code>) triggers a <strong>TypeError</strong>. To fix this, you must convert the integer to a string first using <code>str(5)</code>!
+      </p>
+    </div>
+
+    <!-- PART 2: 5-QUESTION QUIZ CHECKPOINT WITH GREEN/RED HIGHLIGHTS -->
+    <section class="quiz-container">
+      <h2>🧠 Knowledge Checkpoint</h2>
+      <p class="quiz-sub">Test your mastery of data type classifications.</p>
+
+      <!-- Question 1 -->
+      <div class="quiz-card">
+        <p class="q-title">1. What data type is assigned when writing <code>access_granted = False</code>?</p>
+        <div class="options">
+          <label><input type="radio" name="q1" value="wrong"> str</label>
+          <label><input type="radio" name="q1" value="correct"> bool</label>
+          <label><input type="radio" name="q1" value="wrong"> int</label>
+        </div>
+      </div>
+
+      <!-- Question 2 -->
+      <div class="quiz-card">
+        <p class="q-title">2. Which built-in function inspects the data classification of any variable?</p>
+        <div class="options">
+          <label><input type="radio" name="q2" value="wrong"> check_type()</label>
+          <label><input type="radio" name="q2" value="wrong"> typeof()</label>
+          <label><input type="radio" name="q2" value="correct"> type()</label>
+        </div>
+      </div>
+
+      <!-- Question 3 -->
+      <div class="quiz-card">
+        <p class="q-title">3. What separates a <code>float</code> from an <code>int</code> in Python?</p>
+        <div class="options">
+          <label><input type="radio" name="q3" value="correct"> Floats contain decimal points, whereas integers are whole numbers</label>
+          <label><input type="radio" name="q3" value="wrong"> Floats can only store negative numbers</label>
+          <label><input type="radio" name="q3" value="wrong"> There is no difference</label>
+        </div>
+      </div>
+
+      <!-- Question 4 -->
+      <div class="quiz-card">
+        <p class="q-title">4. How does Python categorize <code>"4500"</code> when enclosed in quotes?</p>
+        <div class="options">
+          <label><input type="radio" name="q4" value="wrong"> int</label>
+          <label><input type="radio" name="q4" value="correct"> str (String)</label>
+          <label><input type="radio" name="q4" value="wrong"> float</label>
+        </div>
+      </div>
+
+      <!-- Question 5 -->
+      <div class="quiz-card">
+        <p class="q-title">5. What error halts execution when adding incompatible types like <code>"Score: " + 10</code>?</p>
+        <div class="options">
+          <label><input type="radio" name="q5" value="correct"> TypeError</label>
+          <label><input type="radio" name="q5" value="wrong"> SyntaxError</label>
+          <label><input type="radio" name="q5" value="wrong"> NameError</label>
+        </div>
+      </div>
+
+      <button class="glow-btn submit-btn" onclick="checkQuiz()">SUBMIT ANSWERS</button>
+      <div id="quiz-result" class="quiz-result"></div>
+    </section>
+
+  </main>
+
+  <div class="mini-stat"><small>Platform Version</small><strong>PyFlow v1.0</strong></div>
+    <div class="mini-status">
+      <span class="pulse-dot"></span> Python 3.13 Ready
+    </div>
+  </footer>
+
+  <script>
+    function switchDeck(typeName, event) {
+      // Hide all panels
+      document.querySelectorAll('.deck-panel').forEach(panel => {
+        panel.classList.remove('active-panel');
+      });
+      // Remove active class from tabs
+      document.querySelectorAll('.deck-tab').forEach(tab => {
+        tab.classList.remove('active-tab');
+      });
+      // Show selected panel & activate tab
+      document.getElementById(`panel-${typeName}`).classList.add('active-panel');
+      event.currentTarget.classList.add('active-tab');
+    }
+
+    function checkQuiz() {
+      let score = 0;
+      let total = 5;
+      
+      for(let i = 1; i <= total; i++) {
+        const options = document.querySelectorAll(`input[name="q${i}"]`);
+        
+        options.forEach(input => {
+          const label = input.parentElement;
+          
+          // Reset highlights
+          label.style.background = "transparent";
+          label.style.border = "none";
+          label.style.padding = "0";
+          label.style.color = "#374151";
+          label.style.fontWeight = "normal";
+          
+          // Highlight correct answer in Green
+          if(input.value === "correct") {
+            label.style.background = "rgba(16, 185, 129, 0.15)";
+            label.style.border = "1px solid #10b981";
+            label.style.borderRadius = "8px";
+            label.style.padding = "6px 10px";
+            label.style.color = "#065f46";
+            label.style.fontWeight = "600";
+          }
+          
+          // Highlight incorrect selected choice in Red
+          if(input.checked && input.value === "wrong") {
+            label.style.background = "rgba(239, 68, 68, 0.15)";
+            label.style.border = "1px solid #ef4444";
+            label.style.borderRadius = "8px";
+            label.style.padding = "6px 10px";
+            label.style.color = "#991b1b";
+            label.style.fontWeight = "600";
+          }
+        });
+
+        // Tally score
+        const selected = document.querySelector(`input[name="q${i}"]:checked`);
+        if(selected && selected.value === "correct") {
+          score++;
+        }
+      }
+
+      // Display result box
+      const resultBox = document.getElementById("quiz-result");
+      resultBox.innerHTML = `Your Score: <strong>${score} / ${total}</strong> ${score === 5 ? '🎉 Outstanding! Cyber-Deck Synced.' : '💡 Review the cyber-deck panels above and check highlighted answers!'}`;
+      resultBox.style.display = "block";
+    }
+  </script>
+<script src="bot.js"></script>
+</body>
+</html>

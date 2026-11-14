@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PyFlow — Object-Oriented Programming</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Unique Assembly Line Stack Layout for oop.html */
+    .oop-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+      margin-bottom: 24px;
+    }
+    .analogy-highlight {
+      background: rgba(45, 212, 191, 0.1);
+      border-left: 4px solid #2dd4bf;
+      padding: 14px 18px;
+      border-radius: 0 12px 12px 0;
+      margin: 14px 0;
+      font-size: 14px;
+      color: #111827;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Soft frosted overlay -->
+  <div class="overlay"></div>
+
+  <!-- TOP NAVIGATION BAR -->
+  <nav>
+    <a href="foundations.html" class="logo" style="text-decoration: none; color: inherit;">
+      <span class="logo-dot">🐍</span>
+      <span>PyFlow</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="lessons.html">Lessons</a></li>
+      <li><a href="foundations.html" class="active-link">Foundations</a></li>
+      <li><a href="index.html">Home</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <a href="foundations.html" class="btn-dark">← Back to Topics</a>
+    </div>
+  </nav>
+
+  <!-- LESSON CONTENT CONTAINER -->
+  <main class="lesson-content-container">
+    
+    <!-- TOPIC HEADER BANNER -->
+    <div style="margin-bottom: 24px;">
+      <div class="card-badge" style="display: inline-block; margin-bottom: 8px;">Protocol 04 • Level 1</div>
+      <h1 style="font-size: 32px; font-weight: 800; color: #111827; letter-spacing: -1px;">Object-Oriented Programming (OOP)</h1>
+      <p style="color: #4b5563; font-size: 15px; margin-top: 4px;">Learn how to bundle data and behavior together using classes and objects.</p>
+    </div>
+
+    <!-- SECTION 1: THE FACTORY ANALOGY -->
+    <div class="oop-card">
+      <h3 style="font-size: 18px; font-weight: 700; color: #111827; margin-bottom: 10px;">🏭 What is OOP? (The Robot Factory Analogy)</h3>
+      <p style="font-size: 14px; color: #374151; line-height: 1.6;">
+        Up until now, you've written code line-by-line (procedural style). But as programs grow larger, keeping track of hundreds of variables becomes messy. <strong>Object-Oriented Programming (OOP)</strong> solves this by letting you group related data and actions into custom bundles.
+      </p>
+
+      <div class="analogy-highlight">
+        💡 <strong>Think of it like a robot factory:</strong><br>
+        • A <strong>Class</strong> is the master architectural design drawing (it doesn't do anything by itself yet).<br>
+        • An <strong>Object</strong> is a physical robot built from that drawing. You can build 10 different physical robots from that single drawing!
+      </div>
+    </div>
+
+    <!-- SECTION 2: CLASSES & CONSTRUCTORS -->
+    <div class="oop-card">
+      <h3 style="font-size: 18px; font-weight: 700; color: #111827; margin-bottom: 10px;">📐 Building a Class & The <code>__init__</code> Constructor</h3>
+      <p style="font-size: 14px; color: #374151; line-height: 1.6; margin-bottom: 14px;">
+        To create a class in Python, you use the <code>class</code> keyword followed by a Capitalized name. Inside, we write a special setup function called <code>__init__</code> (short for initialize). Whenever a new robot is born, Python automatically runs this function to set its starting traits (attributes).
+      </p>
+
+      <div class="code-snippet-box" style="margin: 0;">
+        <div class="code-bar">
+          <span>robot_factory.py</span>
+          <span style="color: #2dd4bf; cursor: pointer; font-weight: 700;" onclick="runOOPCode()">▶ Run Factory Code</span>
+        </div>
+        <code>
+          <span style="color: #6b7280;"># 1. Define the class blueprint</span><br>
+          <span style="color: #0d9488; font-weight: 600;">class</span> <span style="color: #f59e0b;">Robot</span>:<br>
+          &nbsp;&nbsp;<span style="color: #0d9488; font-weight: 600;">def</span> <span style="color: #3b82f6;">__init__</span>(self, name, model):<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;self.name = name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #6b7280;"># Attribute</span><br>
+          &nbsp;&nbsp;&nbsp;&nbsp;self.model = model&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #6b7280;"># Attribute</span><br><br>
+          <span style="color: #6b7280;"># 2. Build (instantiate) two physical objects</span><br>
+          bot_1 = Robot(<span style="color: #10b981;">"Atlas"</span>, <span style="color: #10b981;">"X-9"</span>)<br>
+          bot_2 = Robot(<span style="color: #10b981;">"Orion"</span>, <span style="color: #10b981;">"V-2"</span>)<br><br>
+          <span style="color: #0d9488; font-weight: 600;">print</span>(bot_1.name)&nbsp;&nbsp;<span style="color: #6b7280;"># Output: Atlas</span>
+        </code>
+
+        <div id="terminal-output" class="terminal-output" style="display: none;">
+          <span style="color: #2dd4bf;">> Executing factory assembly...</span><br>
+          <span style="color: #ffffff; font-weight: 600;">Atlas</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 3: WHAT IS SELF? -->
+    <div class="oop-card">
+      <h3 style="font-size: 18px; font-weight: 700; color: #111827; margin-bottom: 10px;">⚙️ What on earth is <code>self</code>?</h3>
+      <p style="font-size: 14px; color: #374151; line-height: 1.6; margin-bottom: 10px;">
+        When beginners see <code>self</code> as the first parameter in class functions, it looks confusing. But it's actually very simple:
+      </p>
+      <p style="font-size: 14px; color: #374151; line-height: 1.6;">
+        <code>self</code> simply means <strong>"this specific individual robot"</strong>. If you build <code>bot_1</code> and <code>bot_2</code>, <code>self</code> ensures that when <code>bot_1</code> checks its battery, it doesn't accidentally check <code>bot_2</code>'s battery! Python passes <code>self</code> behind the scenes automatically whenever you call a method.
+      </p>
+    </div>
+
+    <!-- PART 2: 5-QUESTION QUIZ CHECKPOINT WITH GREEN/RED HIGHLIGHTS -->
+    <section class="quiz-container">
+      <h2>🧠 Knowledge Checkpoint</h2>
+      <p class="quiz-sub">Test your understanding of Object-Oriented Programming basics.</p>
+
+      <!-- Question 1 -->
+      <div class="quiz-card">
+        <p class="q-title">1. What is a Class in Python?</p>
+        <div class="options">
+          <label><input type="radio" name="q1" value="wrong"> A physical file stored on your desktop</label>
+          <label><input type="radio" name="q1" value="correct"> A blueprint or template used to create objects</label>
+          <label><input type="radio" name="q1" value="wrong"> A built-in math function</label>
+        </div>
+      </div>
+
+      <!-- Question 2 -->
+      <div class="quiz-card">
+        <p class="q-title">2. What special method is automatically called when you create a new object from a class?</p>
+        <div class="options">
+          <label><input type="radio" name="q2" value="wrong"> <code>__start__()</code></label>
+          <label><input type="radio" name="q2" value="wrong"> <code>__build__()</code></label>
+          <label><input type="radio" name="q2" value="correct"> <code>__init__()</code></label>
+        </div>
+      </div>
+
+      <!-- Question 3 -->
+      <div class="quiz-card">
+        <p class="q-title">3. What does the <code>self</code> parameter represent inside a class?</p>
+        <div class="options">
+          <label><input type="radio" name="q3" value="correct"> The specific individual object instance being created or used</label>
+          <label><input type="radio" name="q3" value="wrong"> The Python software installation folder</label>
+          <label><input type="radio" name="q3" value="wrong"> A global variable shared across all files</label>
+        </div>
+      </div>
+
+      <!-- Question 4 -->
+      <div class="quiz-card">
+        <p class="q-title">4. Which keyword is used to define a new class in Python?</p>
+        <div class="options">
+          <label><input type="radio" name="q4" value="wrong"> object</label>
+          <label><input type="radio" name="q4" value="correct"> class</label>
+          <label><input type="radio" name="q4" value="wrong"> define</label>
+        </div>
+      </div>
+
+      <!-- Question 5 -->
+      <div class="quiz-card">
+        <p class="q-title">5. Can you create multiple distinct object instances from a single class?</p>
+        <div class="options">
+          <label><input type="radio" name="q5" value="correct"> Yes, you can instantiate as many unique objects as you need</label>
+          <label><input type="radio" name="q5" value="wrong"> No, a class can only ever produce one object</label>
+          <label><input type="radio" name="q5" value="wrong"> Only if you restart Python</label>
+        </div>
+      </div>
+
+      <button class="glow-btn submit-btn" onclick="checkQuiz()">SUBMIT ANSWERS</button>
+      <div id="quiz-result" class="quiz-result"></div>
+    </section>
+
+  </main>
+
+  <div class="mini-stat"><small>Platform Version</small><strong>PyFlow v1.0</strong></div>
+    <div class="mini-status">
+      <span class="pulse-dot"></span> Python 3.13 Ready
+    </div>
+  </footer>
+
+  <script>
+    function runOOPCode() {
+      const outputBox = document.getElementById("terminal-output");
+      outputBox.style.display = "block";
+    }
+
+    function checkQuiz() {
+      let score = 0;
+      let total = 5;
+      
+      for(let i = 1; i <= total; i++) {
+        const options = document.querySelectorAll(`input[name="q${i}"]`);
+        
+        options.forEach(input => {
+          const label = input.parentElement;
+          
+          // Reset highlights
+          label.style.background = "transparent";
+          label.style.border = "none";
+          label.style.padding = "0";
+          label.style.color = "#374151";
+          label.style.fontWeight = "normal";
+          
+          // Highlight correct answer in Green
+          if(input.value === "correct") {
+            label.style.background = "rgba(16, 185, 129, 0.15)";
+            label.style.border = "1px solid #10b981";
+            label.style.borderRadius = "8px";
+            label.style.padding = "6px 10px";
+            label.style.color = "#065f46";
+            label.style.fontWeight = "600";
+          }
+          
+          // Highlight incorrect selected choice in Red
+          if(input.checked && input.value === "wrong") {
+            label.style.background = "rgba(239, 68, 68, 0.15)";
+            label.style.border = "1px solid #ef4444";
+            label.style.borderRadius = "8px";
+            label.style.padding = "6px 10px";
+            label.style.color = "#991b1b";
+            label.style.fontWeight = "600";
+          }
+        });
+
+        // Tally score
+        const selected = document.querySelector(`input[name="q${i}"]:checked`);
+        if(selected && selected.value === "correct") {
+          score++;
+        }
+      }
+
+      // Display result box
+      const resultBox = document.getElementById("quiz-result");
+      resultBox.innerHTML = `Your Score: <strong>${score} / ${total}</strong> ${score === 5 ? '🎉 Outstanding! Factory Fully Operational.' : '💡 Review the explanations above and check highlighted answers!'}`;
+      resultBox.style.display = "block";
+    }
+  </script>
+<script src="bot.js"></script>
+</body>
+</html>

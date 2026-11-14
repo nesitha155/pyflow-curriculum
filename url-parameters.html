@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PyFlow — Practice: URL Parameters &amp; Query Filters</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .quiz-card {
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 16px;
+      padding: 22px;
+      margin-bottom: 18px;
+      transition: border-color 0.2s ease;
+    }
+    .quiz-card:hover {
+      border-color: rgba(13, 148, 136, 0.3);
+    }
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .quiz-btn {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      padding: 10px 14px;
+      border-radius: 8px;
+      text-align: left;
+      font-size: 14px;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .quiz-btn:hover {
+      background: #e2e8f0;
+      border-color: #94a3b8;
+    }
+    .quiz-btn.selected {
+      background: #e0f2fe !important;
+      border-color: #0284c7 !important;
+      color: #0369a1;
+      font-weight: 600;
+    }
+    .quiz-btn.correct {
+      background: #d1fae5 !important;
+      border-color: #10b981 !important;
+      color: #065f46;
+      font-weight: 600;
+    }
+    .quiz-btn.incorrect {
+      background: #fee2e2 !important;
+      border-color: #ef4444 !important;
+      color: #991b1b;
+    }
+    .quiz-input {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      background: #f8fafc;
+      margin-top: 12px;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+    .quiz-input:focus {
+      border-color: #0d9488;
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.15);
+    }
+    .quiz-input.correct {
+      background: #d1fae5 !important;
+      border-color: #10b981 !important;
+      color: #065f46;
+    }
+    .quiz-input.incorrect {
+      background: #fee2e2 !important;
+      border-color: #ef4444 !important;
+      color: #991b1b;
+    }
+    .inline-code-input {
+      display: inline-block;
+      width: 130px;
+      padding: 4px 8px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      background: #f8fafc;
+      text-align: center;
+      outline: none;
+    }
+    .inline-code-input:focus {
+      border-color: #0d9488;
+      background: #fff;
+    }
+    .inline-code-input.correct {
+      background: #d1fae5 !important;
+      border-color: #10b981 !important;
+      color: #065f46;
+    }
+    .inline-code-input.incorrect {
+      background: #fee2e2 !important;
+      border-color: #ef4444 !important;
+      color: #991b1b;
+    }
+    .check-quiz-btn {
+      display: block;
+      width: 100%;
+      background: #0f172a;
+      color: #fff;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      margin-top: 24px;
+      transition: background 0.2s ease;
+    }
+    .check-quiz-btn:hover {
+      background: #0d9488;
+    }
+    .quiz-results {
+      margin-top: 16px;
+      padding: 18px;
+      border-radius: 12px;
+      background: rgba(13, 148, 136, 0.1);
+      border: 1px solid rgba(13, 148, 136, 0.3);
+      text-align: center;
+      font-weight: 600;
+      color: #0f766e;
+      display: none;
+    }
+    .terminal-box {
+      background: #0f172a;
+      color: #e2e8f0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13.5px;
+      padding: 18px;
+      border-radius: 12px;
+      overflow-x: auto;
+      margin-top: 12px;
+      line-height: 1.6;
+    }
+    .badge-type {
+      font-size: 11px;
+      background: #f1f5f9;
+      color: #475569;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="overlay"></div>
+
+  <nav>
+    <a href="practice.html" class="logo" style="text-decoration: none; color: inherit;">
+      <span class="logo-dot">🐍</span>
+      <span>PyFlow Practice</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="lessons.html">Lessons</a></li>
+      <li><a href="practice.html" class="active-link">Practice Hub</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="practice.html" class="btn-dark">← Back to Roadmap</a>
+    </div>
+  </nav>
+
+  <main class="lesson-content-container">
+    
+    <div style="margin-bottom: 30px;">
+      <div class="card-badge" style="display: inline-block; margin-bottom: 8px;">Tier 4 • Practice Session 01</div>
+      <h1 style="font-size: 32px; font-weight: 800; color: #111827; letter-spacing: -1px;">URL Parameters &amp; Query Filters</h1>
+      <p style="color: #4b5563; font-size: 15px; margin-top: 4px;">Mastering dynamic routing parameters, query strings, default filter states, and parameter validation.</p>
+    </div>
+
+    <!-- CODE LAB -->
+    <section class="lesson-card" style="display: block; margin-bottom: 24px; padding: 28px;">
+      <div class="card-badge" style="display: inline-block; margin-bottom: 10px;">Routing Lab</div>
+      <h2 style="font-size: 20px; font-weight: 700; margin-bottom: 12px; color: #111827;">💻 Capturing Path and Query Data</h2>
+      <div class="terminal-box">
+        @app.get(<span style="color: #34d399;">"/users/{user_id}/posts"</span>)<br>
+        <span style="color: #38bdf8;">def</span> <span style="color: #34d399;">get_user_posts</span>(user_id: <span style="color: #38bdf8;">int</span>, limit: <span style="color: #38bdf8;">int</span> = <span style="color: #f43f5e;">10</span>, published: <span style="color: #38bdf8;">bool</span> = <span style="color: #38bdf8;">True</span>):<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #38bdf8;">return</span> {<span style="color: #34d399;">"user_id"</span>: user_id, <span style="color: #34d399;">"limit"</span>: limit, <span style="color: #34d399;">"published"</span>: published}
+      </div>
+    </section>
+
+    <!-- ASSESSMENT -->
+    <section class="lesson-card" style="display: block; margin-bottom: 30px; padding: 28px;">
+      <div class="card-badge" style="display: inline-block; margin-bottom: 10px;">Comprehensive Assessment</div>
+      <h2 style="font-size: 22px; font-weight: 700; margin-bottom: 20px; color: #111827;">🧠 10-Point Parameter Drills</h2>
+
+      <!-- Q1: MCQ -->
+      <div class="quiz-card" data-type="mcq" data-q="1">
+        <span class="badge-type">Multiple Choice</span>
+        <p style="font-weight: 600; color: #111827; margin-top: 4px;">1. How does FastAPI identify a path parameter in a route decorator string?</p>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-correct="true" onclick="selectOption(this, 1, true)">A) Enclosed in curly braces, e.g., `/items/{item_id}`</button>
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 1, false)">B) Prefixed with a colon, e.g., `/items/:item_id`</button>
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 1, false)">C) Enclosed in square brackets, e.g., `/items/[item_id]`</button>
+        </div>
+      </div>
+
+      <!-- Q2: Type Output -->
+      <div class="quiz-card" data-type="input" data-q="2">
+        <span class="badge-type">Type the Output</span>
+        <p style="font-weight: 600; color: #111827; margin-top: 4px;">2. Type the character used in a URL to begin appending optional query parameters (e.g., `?limit=10`):</p>
+        <input type="text" class="quiz-input" placeholder="Type character..." data-answer="?">
+      </div>
+
+      <!-- Q3: Fill in the Blank -->
+      <div class="quiz-card" data-type="fill" data-q="3">
+        <span class="badge-type">Fill in the Blank</span>
+        <p style="font-weight: 600; color: #111827; margin-top: 4px;">3. Type the Python type hint required to make a query parameter optional with a default value of None: <br><code style="background:#f1f5f9; padding:6px 10px; display:inline-block; margin-top:8px;">q: str = <input type="text" class="inline-code-input" placeholder="value..." data-answer="None"></code></p>
+      </div>
+
+      <!-- Q4: True / False -->
+      <div class="quiz-card" data-type="tf" data-q="4">
+        <span class="badge-type">True or False</span>
+        <p style="font-weight: 600; color: #111827; margin-top: 4px;">4. True or False: Any function parameter declared in a FastAPI route that is not part of the path string is automatically interpreted as a query parameter.</p>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-correct="true" onclick="selectOption(this, 4, true)">True</button>
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 4, false)">False</button>
+        </div>
+      </div>
+
+      <!-- Q5: MCQ -->
+      <div class="quiz-card" data-type="mcq" data-q="5">
+        <span class="badge-type">Multiple Choice</span>
+        <p style="font-weight: 600; color: #111827; margin-top: 4px;">5. What happens if a client requests a route requiring an integer path parameter (e.g., `/items/5`) but passes a string (`/items/abc`) instead?</p>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-correct="true" onclick="selectOption(this, 5, true)">A) FastAPI automatically validates the type and returns a 422 Unprocessable Entity error response.</button>
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 5, false)">B) Python converts it to ASCII code automatically.</button>
+        </div>
+      </div>
+
+      <!-- Q6: Type Output -->
+      <div class="quiz-card" data-type="input" data-q="6">
+        <span class="badge-type">Type the Output</span>
+        <p style="font-weight: 600; color: #111827; margin-top: 4px;">6. Type the expected HTTP status code returned when validation fails for query parameter inputs:</p>
+        <input type="text" class="quiz-input" placeholder="Type status code..." data-answer="422">
+      </div>
+
+      <!-- Q7: Fill in the Blank -->
+      <div class="quiz-card" data-type="fill" data-q="7">
+        <span class="badge-type">Fill in the Blank</span>
+        <p style="font-weight: 600; color: #111827; margin-top: 4px;">7. Type the separator character used to chain multiple query parameters together in a URL (e.g., `?limit=5<input type="text" class="inline-code-input" placeholder="char..." data-answer="&">offset=2`):</p>
+      </div>
+
+      <!-- Q8: True / False -->
+      <div class="quiz-card" data-type="tf" data-q="8">
+        <span class="badge-type">True or False</span>
+        <p style="font-weight: 600; color: #111827; margin-top: 4px;">8. True or False: Query parameters are strictly required by default in FastAPI unless given a default value or marked as `Optional` / `= None`.</p>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-correct="true" onclick="selectOption(this, 8, true)">True</button>
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 8, false)">False</button>
+        </div>
+      </div>
+
+      <!-- Q9: MCQ -->
+      <div class="quiz-card" data-type="mcq" data-q="9">
+        <span class="badge-type">Multiple Choice</span>
+        <p style="font-weight: 600; color: #111827; margin-top: 4px;">9. How can you define multiple path parameters in a single route path?</p>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-correct="true" onclick="selectOption(this, 9, true)">A) By nesting multiple bracketed variables, e.g., `/users/{user_id}/items/{item_id}`</button>
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 9, false)">B) By separating names with commas inside a single set of braces</button>
+        </div>
+      </div>
+
+      <!-- Q10: Type Output -->
+      <div class="quiz-card" data-type="input" data-q="10">
+        <span class="badge-type">Type the Output</span>
+        <p style="font-weight: 600; color: #111827; margin-top: 4px;">10. Type the boolean literal value parsed when a URL query parameter passes `?active=true` in FastAPI:</p>
+        <input type="text" class="quiz-input" placeholder="Type True or False..." data-answer="True">
+      </div>
+
+      <button class="check-quiz-btn" onclick="checkAllAnswers()">Check My Answers</button>
+      <div class="quiz-results" id="quiz-results"></div>
+    </section>
+
+    <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.7); padding: 20px; border-radius: 16px; border: 1px solid rgba(0,0,0,0.05);">
+      <a href="practice.html" style="text-decoration: none; color: #4b5563; font-weight: 600; font-size: 14px;">← Back to Practice Hub</a>
+      <a href="practice.html" style="text-decoration: none; background: #0f172a; color: #fff; padding: 10px 20px; border-radius: 10px; font-weight: 600; font-size: 14px;">Return to Practice Roadmap →</a>
+    </div>
+
+  </main>
+
+  <footer class="bottom-bar">
+    <div class="mini-stat"><small>Platform Version</small><strong>PyFlow v1.0</strong></div>
+    <div class="mini-status"><span class="pulse-dot"></span> Practice Lab Online</div>
+  </footer>
+
+  <script>
+    let userAnswers = {};
+
+    function selectOption(button, questionNum, isCorrect) {
+      const card = button.closest('.quiz-card');
+      card.querySelectorAll('.quiz-btn').forEach(btn => btn.classList.remove('selected'));
+      button.classList.add('selected');
+      userAnswers[questionNum] = isCorrect;
+    }
+
+    function checkAllAnswers() {
+      let score = 0;
+      let total = 10;
+      let answeredCount = 0;
+
+      document.querySelectorAll('.quiz-card[data-type="input"]').forEach(card => {
+        if (card.querySelector('.quiz-input').value.trim() !== "") answeredCount++;
+      });
+      document.querySelectorAll('.quiz-card[data-type="fill"]').forEach(card => {
+        if (card.querySelector('.inline-code-input').value.trim() !== "") answeredCount++;
+      });
+      document.querySelectorAll('.quiz-card[data-type="mcq"], .quiz-card[data-type="tf"]').forEach(card => {
+        const qNum = card.getAttribute('data-q');
+        if (userAnswers[qNum] !== undefined) answeredCount++;
+      });
+
+      if (answeredCount < total) {
+        alert("Please answer all 10 questions before checking!");
+        return;
+      }
+
+      for (let i = 1; i <= total; i++) {
+        const card = document.querySelector(`.quiz-card[data-q="${i}"]`);
+        const type = card.getAttribute('data-type');
+
+        if (type === 'mcq' || type === 'tf') {
+          const buttons = card.querySelectorAll('.quiz-btn');
+          buttons.forEach(btn => {
+            btn.style.pointerEvents = 'none';
+            if (btn.getAttribute('data-correct') === 'true') btn.classList.add('correct');
+            else if (btn.classList.contains('selected')) btn.classList.add('incorrect');
+          });
+          if (userAnswers[i] === true) score++;
+        } else if (type === 'input') {
+          const inputElem = card.querySelector('.quiz-input');
+          inputElem.readOnly = true;
+          const expected = inputElem.getAttribute('data-answer').trim().toLowerCase();
+          const userVal = inputElem.value.trim().toLowerCase();
+          
+          if (userVal === expected) {
+            inputElem.classList.add('correct');
+            score++;
+          } else {
+            inputElem.classList.add('incorrect');
+            inputElem.value += ` (Correct: ${inputElem.getAttribute('data-answer')})`;
+          }
+        } else if (type === 'fill') {
+          const fillInput = card.querySelector('.inline-code-input');
+          fillInput.readOnly = true;
+          const expected = fillInput.getAttribute('data-answer').trim();
+          const userVal = fillInput.value.trim();
+
+          if (userVal === expected) {
+            fillInput.classList.add('correct');
+            score++;
+          } else {
+            fillInput.classList.add('incorrect');
+            fillInput.value = `${fillInput.value} [Ans: ${expected}]`;
+          }
+        }
+      }
+
+      const resultsDiv = document.getElementById('quiz-results');
+      resultsDiv.style.display = 'block';
+      if (score === 10) resultsDiv.innerHTML = "🎉 Flawless! 10/10! URL Parameters & Query Filters mastered!";
+      else if (score >= 7) resultsDiv.innerHTML = `👍 Great job! You scored ${score} out of 10.`;
+      else resultsDiv.innerHTML = `💪 You scored ${score} out of 10. Review the corrections above and try again!`;
+    }
+  </script>
+<script src="bot.js"></script>
+</body>
+</html>

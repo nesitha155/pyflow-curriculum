@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PyFlow — Level 2: Conditionals (if, elif, else)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .matrix-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+      margin-bottom: 24px;
+    }
+    .logic-branch {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 16px 0;
+    }
+    @media (max-width: 768px) {
+      .logic-branch { grid-template-columns: 1fr; }
+    }
+    .branch-node {
+      background: rgba(15, 23, 42, 0.03);
+      border: 1px solid rgba(17, 24, 39, 0.1);
+      padding: 16px;
+      border-radius: 14px;
+      text-align: center;
+      transition: all 0.2s ease;
+    }
+    .branch-node.active-node {
+      background: rgba(45, 212, 191, 0.15);
+      border-color: #2dd4bf;
+      box-shadow: 0 4px 12px rgba(45, 212, 191, 0.2);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Soft frosted overlay -->
+  <div class="overlay"></div>
+
+  <!-- TOP NAVIGATION BAR -->
+  <nav>
+    <a href="foundations.html" class="logo" style="text-decoration: none; color: inherit;">
+      <span class="logo-dot">🐍</span>
+      <span>PyFlow</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="lessons.html">Lessons</a></li>
+      <li><a href="control-flow.html" class="active-link">Control Flow</a></li>
+      <li><a href="foundations.html">Foundations</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <a href="control-flow.html" class="btn-dark">← Back to Hub</a>
+    </div>
+  </nav>
+
+  <!-- LESSON CONTENT CONTAINER -->
+  <main class="lesson-content-container">
+    
+    <!-- TOPIC HEADER BANNER -->
+    <div style="margin-bottom: 24px;">
+      <div class="card-badge" style="display: inline-block; margin-bottom: 8px;">Protocol 01 • Level 2 Control Flow</div>
+      <h1 style="font-size: 32px; font-weight: 800; color: #111827; letter-spacing: -1px;">Conditionals: if, elif, else</h1>
+      <p style="color: #4b5563; font-size: 15px; margin-top: 4px;">Empower your code to make intelligent decisions based on real-time data states.</p>
+    </div>
+
+    <!-- SECTION 1: THE DECISION MATRIX CONCEPT -->
+    <div class="matrix-card">
+      <h3 style="font-size: 18px; font-weight: 700; color: #111827; margin-bottom: 10px;">🔀 Branching Logic (The Robot Decision Matrix)</h3>
+      <p style="font-size: 14px; color: #374151; line-height: 1.6; margin-bottom: 16px;">
+        Until now, your code executed every line straight down from top to bottom. But real-world programs need to adapt. <strong>Control flow statements</strong> allow your program to evaluate a condition (True or False) and choose which path of code to run.
+      </p>
+
+      <div class="logic-branch">
+        <div class="branch-node" id="node-if">
+          <strong style="color: #0d9488; display: block; margin-bottom: 4px;">if statement</strong>
+          <small style="color: #4b5563;">Evaluates the primary condition first.</small>
+        </div>
+        <div class="branch-node" id="node-elif">
+          <strong style="color: #d97706; display: block; margin-bottom: 4px;">elif (Else If)</strong>
+          <small style="color: #4b5563;">Checks alternative conditions if 'if' is False.</small>
+        </div>
+        <div class="branch-node" id="node-else">
+          <strong style="color: #ef4444; display: block; margin-bottom: 4px;">else clause</strong>
+          <small style="color: #4b5563;">Catches everything else if all previous checks fail.</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 2: INTERACTIVE LOGIC GATE SIMULATOR -->
+    <div class="matrix-card">
+      <h3 style="font-size: 18px; font-weight: 700; color: #111827; margin-bottom: 10px;">⚡ Interactive Decision Simulator</h3>
+      <p style="font-size: 14px; color: #374151; line-height: 1.6; margin-bottom: 14px;">
+        Test how Python routes execution based on battery levels:
+      </p>
+
+      <!-- Simulation Controller Buttons -->
+      <div style="display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap;">
+        <button onclick="simulateLogic(15)" style="background: rgba(239,68,68,0.15); border: 1px solid #ef4444; color: #991b1b; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 12px;">Test Battery: 15% (Critical)</button>
+        <button onclick="simulateLogic(45)" style="background: rgba(245,158,11,0.15); border: 1px solid #f59e0b; color: #b45309; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 12px;">Test Battery: 45% (Warning)</button>
+        <button onclick="simulateLogic(90)" style="background: rgba(16,185,129,0.15); border: 1px solid #10b981; color: #065f46; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 12px;">Test Battery: 90% (Optimal)</button>
+      </div>
+
+      <div class="code-snippet-box" style="margin: 0;">
+        <div class="code-bar">
+          <span>decision_matrix.py</span>
+          <span style="color: #2dd4bf;">● Logic Gate Monitor</span>
+        </div>
+        <code>
+          battery = <span id="sim-val" style="color: #f59e0b;">90</span><br><br>
+          <span style="color: #0d9488; font-weight: 600;">if</span> battery &lt; <span style="color: #f59e0b;">20</span>:<br>
+          &nbsp;&nbsp;<span style="color: #0d9488; font-weight: 600;">print</span>(<span style="color: #10b981;">"Critical Power! Return to base."</span>)<br>
+          <span style="color: #0d9488; font-weight: 600;">elif</span> battery &lt; <span style="color: #f59e0b;">50</span>:<br>
+          &nbsp;&nbsp;<span style="color: #0d9488; font-weight: 600;">print</span>(<span style="color: #10b981;">"Warning: Entering power-saving mode."</span>)<br>
+          <span style="color: #0d9488; font-weight: 600;">else</span>:<br>
+          &nbsp;&nbsp;<span style="color: #0d9488; font-weight: 600;">print</span>(<span style="color: #10b981;">"Power nominal. All systems operational."</span>)
+        </code>
+
+        <div id="terminal-output" class="terminal-output" style="display: block; margin-top: 14px;">
+          <span style="color: #2dd4bf;">> Execution Path:</span> <span id="sim-output" style="color: #ffffff; font-weight: 600;">Power nominal. All systems operational.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PART 2: 5-QUESTION QUIZ CHECKPOINT WITH GREEN/RED HIGHLIGHTS -->
+    <section class="quiz-container">
+      <h2>🧠 Knowledge Checkpoint</h2>
+      <p class="quiz-sub">Test your mastery of conditional branching logic.</p>
+
+      <!-- Question 1 -->
+      <div class="quiz-card">
+        <p class="q-title">1. Which keyword is always evaluated first in any conditional decision block?</p>
+        <div class="options">
+          <label><input type="radio" name="q1" value="wrong"> <code>else</code></label>
+          <label><input type="radio" name="q1" value="correct"> <code>if</code></label>
+          <label><input type="radio" name="q1" value="wrong"> <code>elif</code></label>
+        </div>
+      </div>
+
+      <!-- Question 2 -->
+      <div class="quiz-card">
+        <p class="q-title">2. What does <code>elif</code> stand for in Python?</p>
+        <div class="options">
+          <label><input type="radio" name="q2" value="correct"> Else If</label>
+          <label><input type="radio" name="q2" value="wrong"> End Loop If</label>
+          <label><input type="radio" name="q2" value="wrong"> Element Limit Filter</label>
+        </div>
+      </div>
+
+      <!-- Question 3 -->
+      <div class="quiz-card">
+        <p class="q-title">3. When does the code inside an <code>else</code> block execute?</p>
+        <div class="options">
+          <label><input type="radio" name="q3" value="wrong"> Whenever the program starts</label>
+          <label><input type="radio" name="q3" value="correct"> Only when all preceding <code>if</code> and <code>elif</code> conditions evaluate to False</label>
+          <label><input type="radio" name="q3" value="wrong"> Alongside every successful <code>if</code> statement</label>
+        </div>
+      </div>
+
+      <!-- Question 4 -->
+      <div class="quiz-card">
+        <p class="q-title">4. Which comparison operator checks if two values are strictly equal in Python?</p>
+        <div class="options">
+          <label><input type="radio" name="q4" value="wrong"> <code>=</code></label>
+          <label><input type="radio" name="q4" value="correct"> <code>==</code></label>
+          <label><input type="radio" name="q4" value="wrong"> <code>equals()</code></label>
+        </div>
+      </div>
+
+      <!-- Question 5 -->
+      <div class="quiz-card">
+        <p class="q-title">5. What symbol is required at the end of an <code>if</code> statement header line in Python?</p>
+        <div class="options">
+          <label><input type="radio" name="q5" value="correct"> A colon (<code>:</code>)</label>
+          <label><input type="radio" name="q5" value="wrong"> A semicolon (<code>;</code>)</label>
+          <label><input type="radio" name="q5" value="wrong"> A question mark (<code>?</code>)</label>
+        </div>
+      </div>
+
+      <button class="glow-btn submit-btn" onclick="checkQuiz()">SUBMIT ANSWERS</button>
+      <div id="quiz-result" class="quiz-result"></div>
+    </section>
+
+  </main>
+
+  <div class="mini-stat"><small>Platform Version</small><strong>PyFlow v1.0</strong></div>
+    <div class="mini-status">
+      <span class="pulse-dot"></span> Python 3.13 Ready
+    </div>
+  </footer>
+
+  <script>
+    function simulateLogic(val) {
+      document.getElementById("sim-val").innerText = val;
+      
+      document.getElementById("node-if").classList.remove('active-node');
+      document.getElementById("node-elif").classList.remove('active-node');
+      document.getElementById("node-else").classList.remove('active-node');
+
+      const output = document.getElementById("sim-output");
+
+      if (val < 20) {
+        document.getElementById("node-if").classList.add('active-node');
+        output.innerText = "Critical Power! Return to base.";
+      } else if (val < 50) {
+        document.getElementById("node-elif").classList.add('active-node');
+        output.innerText = "Warning: Entering power-saving mode.";
+      } else {
+        document.getElementById("node-else").classList.add('active-node');
+        output.innerText = "Power nominal. All systems operational.";
+      }
+    }
+
+    function checkQuiz() {
+      let score = 0;
+      let total = 5;
+      
+      for(let i = 1; i <= total; i++) {
+        const options = document.querySelectorAll(`input[name="q${i}"]`);
+        
+        options.forEach(input => {
+          const label = input.parentElement;
+          
+          label.style.background = "transparent";
+          label.style.border = "none";
+          label.style.padding = "0";
+          label.style.color = "#374151";
+          label.style.fontWeight = "normal";
+          
+          if(input.value === "correct") {
+            label.style.background = "rgba(16, 185, 129, 0.15)";
+            label.style.border = "1px solid #10b981";
+            label.style.borderRadius = "8px";
+            label.style.padding = "6px 10px";
+            label.style.color = "#065f46";
+            label.style.fontWeight = "600";
+          }
+          
+          if(input.checked && input.value === "wrong") {
+            label.style.background = "rgba(239, 68, 68, 0.15)";
+            label.style.border = "1px solid #ef4444";
+            label.style.borderRadius = "8px";
+            label.style.padding = "6px 10px";
+            label.style.color = "#991b1b";
+            label.style.fontWeight = "600";
+          }
+        });
+
+        const selected = document.querySelector(`input[name="q${i}"]:checked`);
+        if(selected && selected.value === "correct") {
+          score++;
+        }
+      }
+
+      const resultBox = document.getElementById("quiz-result");
+      resultBox.innerHTML = `Your Score: <strong>${score} / ${total}</strong> ${score === 5 ? '🎉 Level 2 Initialized! Decision Matrix Synced.' : '💡 Review the decision tree above and check highlighted answers!'}`;
+      resultBox.style.display = "block";
+    }
+  </script>
+<script src="bot.js"></script>
+</body>
+</html>

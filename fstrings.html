@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PyFlow — f-Strings & String Formatting</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Unique Console Layout for fstrings.html */
+    .console-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+      margin-bottom: 24px;
+    }
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 16px;
+    }
+    @media (max-width: 768px) {
+      .comparison-grid { grid-template-columns: 1fr; }
+    }
+    .bad-box {
+      background: rgba(239, 68, 68, 0.06);
+      border: 1px solid rgba(239, 68, 68, 0.2);
+      padding: 16px;
+      border-radius: 12px;
+    }
+    .good-box {
+      background: rgba(16, 185, 129, 0.06);
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      padding: 16px;
+      border-radius: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Soft frosted overlay -->
+  <div class="overlay"></div>
+
+  <!-- TOP NAVIGATION BAR -->
+  <nav>
+    <a href="foundations.html" class="logo" style="text-decoration: none; color: inherit;">
+      <span class="logo-dot">🐍</span>
+      <span>PyFlow</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="lessons.html">Lessons</a></li>
+      <li><a href="foundations.html" class="active-link">Foundations</a></li>
+      <li><a href="index.html">Home</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <a href="foundations.html" class="btn-dark">← Back to Topics</a>
+    </div>
+  </nav>
+
+  <!-- LESSON CONTENT CONTAINER -->
+  <main class="lesson-content-container">
+    
+    <!-- TOPIC HEADER BANNER -->
+    <div style="margin-bottom: 24px;">
+      <div class="card-badge" style="display: inline-block; margin-bottom: 8px;">Protocol 06 • Level 1</div>
+      <h1 style="font-size: 32px; font-weight: 800; color: #111827; letter-spacing: -1px;">f-Strings & String Formatting</h1>
+      <p style="color: #4b5563; font-size: 15px; margin-top: 4px;">Inject variables and expressions directly into text streams effortlessly.</p>
+    </div>
+
+    <!-- SECTION 1: THE OLD WAY VS F-STRINGS -->
+    <div class="console-card">
+      <h3 style="font-size: 18px; font-weight: 700; color: #111827; margin-bottom: 10px;">✨ What is an f-String?</h3>
+      <p style="font-size: 14px; color: #374151; line-height: 1.6; margin-bottom: 16px;">
+        Often when coding, you need to combine text with variables (like printing <code>"Welcome back, Atlas! Score: 100"</code>). Before Python 3.6, developers had to use messy plus signs and manually cast numbers to text strings. <strong>f-strings (Formatted String Literals)</strong> make this clean, fast, and readable.
+      </p>
+
+      <div class="comparison-grid">
+        <!-- Old Messy Way -->
+        <div class="bad-box">
+          <strong style="color: #ef4444; display: block; margin-bottom: 6px; font-size: 13px;">❌ The Old Concatenation Way</strong>
+          <p style="font-size: 12px; color: #4b5563; margin-bottom: 8px;">Requires manual spaces, plus signs, and <code>str()</code> conversions:</p>
+          <code style="font-size: 11px; display: block; color: #111827;">
+            name = "Atlas"<br>
+            score = 100<br>
+            print("Pilot " + name + " has score " + str(score))
+          </code>
+        </div>
+
+        <!-- Clean f-String Way -->
+        <div class="good-box">
+          <strong style="color: #10b981; display: block; margin-bottom: 6px; font-size: 13px;">✅ The Modern f-String Way</strong>
+          <p style="font-size: 12px; color: #4b5563; margin-bottom: 8px;">Prefix with <code>f</code> and wrap variables in curly braces <code>{}</code>:</p>
+          <code style="font-size: 11px; display: block; color: #111827;">
+            name = "Atlas"<br>
+            score = 100<br>
+            print(f"Pilot {name} has score {score}")
+          </code>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 2: INTERACTIVE SANDBOX -->
+    <div class="console-card">
+      <h3 style="font-size: 18px; font-weight: 700; color: #111827; margin-bottom: 10px;">⚡ Executing Expressions Inside f-Strings</h3>
+      <p style="font-size: 14px; color: #374151; line-height: 1.6; margin-bottom: 14px;">
+        f-strings aren't just for variables—you can write actual Python math or method calls directly inside the curly braces <code>{}</code>!
+      </p>
+
+      <div class="code-snippet-box" style="margin: 0;">
+        <div class="code-bar">
+          <span>formatter_console.py</span>
+          <span style="color: #2dd4bf; cursor: pointer; font-weight: 700;" onclick="runFormatterCode()">▶ Run f-String Protocol</span>
+        </div>
+        <code>
+          <span style="color: #6b7280;"># Evaluating math expressions directly inside {}</span><br>
+          units = <span style="color: #f59e0b;">4</span><br>
+          power_cells = <span style="color: #f59e0b;">50</span><br><br>
+          <span style="color: #0d9488; font-weight: 600;">print</span>(f<span style="color: #10b981;">"Total power capacity: {units * power_cells} kWh"</span>)
+        </code>
+
+        <div id="terminal-output" class="terminal-output" style="display: none;">
+          <span style="color: #2dd4bf;">> Interpolating string stream...</span><br>
+          <span style="color: #ffffff; font-weight: 600;">Total power capacity: 200 kWh</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PART 2: 5-QUESTION QUIZ CHECKPOINT WITH GREEN/RED HIGHLIGHTS -->
+    <section class="quiz-container">
+      <h2>🧠 Knowledge Checkpoint</h2>
+      <p class="quiz-sub">Test your mastery of f-strings and string interpolation.</p>
+
+      <!-- Question 1 -->
+      <div class="quiz-card">
+        <p class="q-title">1. What prefix character must you place directly before the quotation mark to create an f-string?</p>
+        <div class="options">
+          <label><input type="radio" name="q1" value="wrong"> <code>x</code></label>
+          <label><input type="radio" name="q1" value="correct"> <code>f</code></label>
+          <label><input type="radio" name="q1" value="wrong"> <code>s</code></label>
+        </div>
+      </div>
+
+      <!-- Question 2 -->
+      <div class="quiz-card">
+        <p class="q-title">2. Which symbol characters are used to inject variables or expressions inside an f-string?</p>
+        <div class="options">
+          <label><input type="radio" name="q2" value="correct"> Curly braces <code>{}</code></label>
+          <label><input type="radio" name="q2" value="wrong"> Parentheses <code>()</code></label>
+          <label><input type="radio" name="q2" value="wrong"> Square brackets <code>[]</code></label>
+        </div>
+      </div>
+
+      <!-- Question 3 -->
+      <div class="quiz-card">
+        <p class="q-title">3. Do you need to manually wrap integer variables in <code>str()</code> when using f-strings?</p>
+        <div class="options">
+          <label><input type="radio" name="q3" value="wrong"> Yes, otherwise Python crashes immediately</label>
+          <label><input type="radio" name="q3" value="correct"> No, Python automatically converts variables inside <code>{}</code> to text</label>
+          <label><input type="radio" name="q3" value="wrong"> Only if the number is greater than 100</label>
+        </div>
+      </div>
+
+      <!-- Question 4 -->
+      <div class="quiz-card">
+        <p class="q-title">4. What will be the output of: <code>x = 5; print(f"Result: {x * 2}")</code>?</p>
+        <div class="options">
+          <label><input type="radio" name="q4" value="correct"> Result: 10</label>
+          <label><input type="radio" name="q4" value="wrong"> Result: 5 * 2</label>
+          <label><input type="radio" name="q4" value="wrong"> Result: 55</label>
+        </div>
+      </div>
+
+      <!-- Question 5 -->
+      <div class="quiz-card">
+        <p class="q-title">5. Which of these is a valid f-string declaration in Python 3.13?</p>
+        <div class="options">
+          <label><input type="radio" name="q5" value="correct"> <code>f"User: {username}"</code></label>
+          <label><input type="radio" name="q5" value="wrong"> <code>"User: {username}".format_string()</code></label>
+          <label><input type="radio" name="q5" value="wrong"> <code>f(User: username)</code></label>
+        </div>
+      </div>
+
+      <button class="glow-btn submit-btn" onclick="checkQuiz()">SUBMIT ANSWERS</button>
+      <div id="quiz-result" class="quiz-result"></div>
+    </section>
+
+  </main>
+
+  <div class="mini-stat"><small>Platform Version</small><strong>PyFlow v1.0</strong></div>
+    <div class="mini-status">
+      <span class="pulse-dot"></span> Python 3.13 Ready
+    </div>
+  </footer>
+
+  <script>
+    function runFormatterCode() {
+      const outputBox = document.getElementById("terminal-output");
+      outputBox.style.display = "block";
+    }
+
+    function checkQuiz() {
+      let score = 0;
+      let total = 5;
+      
+      for(let i = 1; i <= total; i++) {
+        const options = document.querySelectorAll(`input[name="q${i}"]`);
+        
+        options.forEach(input => {
+          const label = input.parentElement;
+          
+          // Reset highlights
+          label.style.background = "transparent";
+          label.style.border = "none";
+          label.style.padding = "0";
+          label.style.color = "#374151";
+          label.style.fontWeight = "normal";
+          
+          // Highlight correct answer in Green
+          if(input.value === "correct") {
+            label.style.background = "rgba(16, 185, 129, 0.15)";
+            label.style.border = "1px solid #10b981";
+            label.style.borderRadius = "8px";
+            label.style.padding = "6px 10px";
+            label.style.color = "#065f46";
+            label.style.fontWeight = "600";
+          }
+          
+          // Highlight incorrect selected choice in Red
+          if(input.checked && input.value === "wrong") {
+            label.style.background = "rgba(239, 68, 68, 0.15)";
+            label.style.border = "1px solid #ef4444";
+            label.style.borderRadius = "8px";
+            label.style.padding = "6px 10px";
+            label.style.color = "#991b1b";
+            label.style.fontWeight = "600";
+          }
+        });
+
+        // Tally score
+        const selected = document.querySelector(`input[name="q${i}"]:checked`);
+        if(selected && selected.value === "correct") {
+          score++;
+        }
+      }
+
+      // Display result box
+      const resultBox = document.getElementById("quiz-result");
+      resultBox.innerHTML = `Your Score: <strong>${score} / ${total}</strong> ${score === 5 ? '🎉 Outstanding! f-String Console Synced.' : '💡 Review the interpolation notes above and check highlighted answers!'}`;
+      resultBox.style.display = "block";
+    }
+  </script>
+<script src="bot.js"></script>
+</body>
+</html>

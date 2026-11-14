@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PyFlow — Level 2: While Loops & Sentinels</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .loop-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+      margin-bottom: 24px;
+    }
+    .warning-box {
+      background: rgba(239, 68, 68, 0.06);
+      border: 1px solid rgba(239, 68, 68, 0.2);
+      padding: 16px;
+      border-radius: 12px;
+      margin-top: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Soft frosted overlay -->
+  <div class="overlay"></div>
+
+  <!-- TOP NAVIGATION BAR -->
+  <nav>
+    <a href="foundations.html" class="logo" style="text-decoration: none; color: inherit;">
+      <span class="logo-dot">🐍</span>
+      <span>PyFlow</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="lessons.html">Lessons</a></li>
+      <li><a href="control-flow.html" class="active-link">Control Flow</a></li>
+      <li><a href="foundations.html">Foundations</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <a href="control-flow.html" class="btn-dark">← Back to Hub</a>
+    </div>
+  </nav>
+
+  <!-- LESSON CONTENT CONTAINER -->
+  <main class="lesson-content-container">
+    
+    <!-- TOPIC HEADER BANNER -->
+    <div style="margin-bottom: 24px;">
+      <div class="card-badge" style="display: inline-block; margin-bottom: 8px;">Protocol 02 • Level 2 Control Flow</div>
+      <h1 style="font-size: 32px; font-weight: 800; color: #111827; letter-spacing: -1px;">While Loops & Sentinels</h1>
+      <p style="color: #4b5563; font-size: 15px; margin-top: 4px;">Execute repeating code blocks dynamically until a specific target condition is met.</p>
+    </div>
+
+    <!-- SECTION 1: WHAT IS A WHILE LOOP? -->
+    <div class="loop-card">
+      <h3 style="font-size: 18px; font-weight: 700; color: #111827; margin-bottom: 10px;">🔄 Automated Iteration with <code>while</code></h3>
+      <p style="font-size: 14px; color: #374151; line-height: 1.6; margin-bottom: 16px;">
+        While an <code>if</code> statement checks a condition once, a <strong><code>while</code> loop</strong> keeps repeating a block of code over and over again as long as its condition remains <code>True</code>. It acts like a robotic guardian checking a sensor on every cycle.
+      </p>
+
+      <div class="code-snippet-box" style="margin: 0;">
+        <div class="code-bar">
+          <span>shield_generator.py</span>
+          <span style="color: #2dd4bf;">● Loop Monitor</span>
+        </div>
+        <code>
+          shields = <span style="color: #f59e0b;">3</span><br><br>
+          <span style="color: #0d9488; font-weight: 600;">while</span> shields &gt; <span style="color: #f59e0b;">0</span>:<br>
+          &nbsp;&nbsp;<span style="color: #0d9488; font-weight: 600;">print</span>(f<span style="color: #10b981;">"Shields active. Power remaining: {shields}"</span>)<br>
+          &nbsp;&nbsp;shields -= <span style="color: #f59e0b;">1</span>&nbsp;&nbsp;<span style="color: #6b7280;"># Decrement counter</span><br><br>
+          <span style="color: #0d9488; font-weight: 600;">print</span>(<span style="color: #10b981;">"Warning! Shields collapsed!"</span>)
+        </code>
+      </div>
+
+      <!-- INFINITE LOOP WARNING -->
+      <div class="warning-box">
+        <strong style="color: #ef4444; display: block; margin-bottom: 4px; font-size: 13px;">⚠️ The Infinite Loop Trap</strong>
+        <p style="font-size: 13px; color: #4b5563; line-height: 1.5; margin: 0;">
+          If you forget to update your counter (like omitting <code>shields -= 1</code>), the condition will <em>never</em> become False. Your program will loop forever, freezing your terminal! Always ensure your loop has a clear exit pathway.
+        </p>
+      </div>
+    </div>
+
+    <!-- SECTION 2: INTERACTIVE SIMULATOR & SENTINEL VALUES -->
+    <div class="loop-card">
+      <h3 style="font-size: 18px; font-weight: 700; color: #111827; margin-bottom: 10px;">🛡️ Sentinel Values & Interactive Simulation</h3>
+      <p style="font-size: 14px; color: #374151; line-height: 1.6; margin-bottom: 14px;">
+        A <strong>sentinel value</strong> is a special input or signal used to break a loop (for example, typing <code>"exit"</code> to close a chat bot). Run the simulation below to watch a while loop execute step-by-step:
+      </p>
+
+      <button onclick="runLoopSimulation()" style="background: #0f172a; color: #2dd4bf; border: none; padding: 10px 18px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 12px; margin-bottom: 14px;">▶ Simulate Loop Execution</button>
+
+      <div class="code-snippet-box" style="margin: 0;">
+        <div class="code-bar">
+          <span>sentinel_stream.py</span>
+          <span style="color: #10b981;">● Execution Console</span>
+        </div>
+        <code>
+          command = <span style="color: #10b981;">""</span><br>
+          <span style="color: #0d9488; font-weight: 600;">while</span> command != <span style="color: #10b981;">"exit"</span>:<br>
+          &nbsp;&nbsp;command = <span style="color: #0d9488; font-weight: 600;">input</span>(<span style="color: #10b981;">"Enter command: "</span>)
+        </code>
+
+        <div id="terminal-output" class="terminal-output" style="display: none; margin-top: 14px;">
+          <span style="color: #2dd4bf;">> Iteration 1: User typed "status" -> Loop continues.</span><br>
+          <span style="color: #2dd4bf;">> Iteration 2: User typed "diagnostics" -> Loop continues.</span><br>
+          <span style="color: #10b981;">> Iteration 3: User typed "exit" (Sentinel Value) -> Loop terminated successfully!</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PART 2: 5-QUESTION QUIZ CHECKPOINT WITH GREEN/RED HIGHLIGHTS -->
+    <section class="quiz-container">
+      <h2>🧠 Knowledge Checkpoint</h2>
+      <p class="quiz-sub">Test your mastery of while loops and sentinel termination.</p>
+
+      <!-- Question 1 -->
+      <div class="quiz-card">
+        <p class="q-title">1. When does a <code>while</code> loop stop executing its code block?</p>
+        <div class="options">
+          <label><input type="radio" name="q1" value="wrong"> Exactly after 10 repetitions</label>
+          <label><input type="radio" name="q1" value="correct"> As soon as its governing condition evaluates to False</label>
+          <label><input type="radio" name="q1" value="wrong"> When the computer restarts</label>
+        </div>
+      </div>
+
+      <!-- Question 2 -->
+      <div class="quiz-card">
+        <p class="q-title">2. What causes an accidental "Infinite Loop" in Python?</p>
+        <div class="options">
+          <label><input type="radio" name="q2" value="correct"> The loop condition never changes to False, causing it to run forever</label>
+          <label><input type="radio" name="q2" value="wrong"> Using too many variables inside a function</label>
+          <label><input type="radio" name="q2" value="wrong"> Forgetting to import the math module</label>
+        </div>
+      </div>
+
+      <!-- Question 3 -->
+      <div class="quiz-card">
+        <p class="q-title">3. What is a "Sentinel Value" in programming?</p>
+        <div class="options">
+          <label><input type="radio" name="q3" value="wrong"> A hardware security chip</label>
+          <label><input type="radio" name="q3" value="correct"> A special marker value used to signal a loop to stop running</label>
+          <label><input type="radio" name="q3" value="wrong"> An error code generated by syntax mistakes</label>
+        </div>
+      </div>
+
+      <!-- Question 4 -->
+      <div class="quiz-card">
+        <p class="q-title">4. Which of these is a correct <code>while</code> loop syntax structure in Python?</p>
+        <div class="options">
+          <label><input type="radio" name="q4" value="wrong"> <code>while (x > 0) { print(x) }</code></label>
+          <label><input type="radio" name="q4" value="correct"> <code>while x > 0:\n    print(x)</code></label>
+          <label><input type="radio" name="q4" value="wrong"> <code>loop x > 0: print(x)</code></label>
+        </div>
+      </div>
+
+      <!-- Question 5 -->
+      <div class="quiz-card">
+        <p class="q-title">5. Why is updating your loop counter (e.g., <code>count -= 1</code>) critical inside a while loop?</p>
+        <div class="options">
+          <label><input type="radio" name="q5" value="correct"> To ensure the condition eventually becomes False and the loop terminates</label>
+          <label><input type="radio" name="q5" value="wrong"> To speed up computer processor clock speeds</label>
+          <label><input type="radio" name="q5" value="wrong"> It is optional and only used for aesthetic formatting</label>
+        </div>
+      </div>
+
+      <button class="glow-btn submit-btn" onclick="checkQuiz()">SUBMIT ANSWERS</button>
+      <div id="quiz-result" class="quiz-result"></div>
+    </section>
+
+  </main>
+
+  <div class="mini-stat"><small>Platform Version</small><strong>PyFlow v1.0</strong></div>
+    <div class="mini-status">
+      <span class="pulse-dot"></span> Python 3.13 Ready
+    </div>
+  </footer>
+
+  <script>
+    function runLoopSimulation() {
+      const outputBox = document.getElementById("terminal-output");
+      outputBox.style.display = "block";
+    }
+
+    function checkQuiz() {
+      let score = 0;
+      let total = 5;
+      
+      for(let i = 1; i <= total; i++) {
+        const options = document.querySelectorAll(`input[name="q${i}"]`);
+        
+        options.forEach(input => {
+          const label = input.parentElement;
+          
+          label.style.background = "transparent";
+          label.style.border = "none";
+          label.style.padding = "0";
+          label.style.color = "#374151";
+          label.style.fontWeight = "normal";
+          
+          if(input.value === "correct") {
+            label.style.background = "rgba(16, 185, 129, 0.15)";
+            label.style.border = "1px solid #10b981";
+            label.style.borderRadius = "8px";
+            label.style.padding = "6px 10px";
+            label.style.color = "#065f46";
+            label.style.fontWeight = "600";
+          }
+          
+          if(input.checked && input.value === "wrong") {
+            label.style.background = "rgba(239, 68, 68, 0.15)";
+            label.style.border = "1px solid #ef4444";
+            label.style.borderRadius = "8px";
+            label.style.padding = "6px 10px";
+            label.style.color = "#991b1b";
+            label.style.fontWeight = "600";
+          }
+        });
+
+        const selected = document.querySelector(`input[name="q${i}"]:checked`);
+        if(selected && selected.value === "correct") {
+          score++;
+        }
+      }
+
+      const resultBox = document.getElementById("quiz-result");
+      resultBox.innerHTML = `Your Score: <strong>${score} / ${total}</strong> ${score === 5 ? '🎉 Outstanding! Loop Protocol Mastered.' : '💡 Review the loop mechanics above and check highlighted answers!'}`;
+      resultBox.style.display = "block";
+    }
+  </script>
+<script src="bot.js"></script>
+</body>
+</html>

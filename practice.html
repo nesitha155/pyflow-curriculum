@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PyFlow — Beginner to Expert Practice Roadmap</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Ultra-Modern Glassmorphism & UI Enhancements */
+    body {
+      font-family: 'Inter', sans-serif;
+      background-attachment: fixed;
+    }
+
+    .lesson-content-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    /* Progress Overview Card */
+    .progress-overview {
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: 24px;
+      padding: 28px;
+      margin-bottom: 28px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    }
+    .progress-bar-container {
+      background: #e2e8f0;
+      border-radius: 999px;
+      height: 14px;
+      width: 100%;
+      overflow: hidden;
+      margin-top: 14px;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.06);
+    }
+    .progress-bar-fill {
+      background: linear-gradient(90deg, #0d9488, #06b6d4, #3b82f6);
+      height: 100%;
+      width: 0%;
+      transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      border-radius: 999px;
+      box-shadow: 0 0 12px rgba(13, 148, 136, 0.4);
+    }
+
+    /* Glowing Recommendation Banner */
+    .recommendation-card {
+      background: linear-gradient(135deg, rgba(13, 148, 136, 0.08), rgba(2, 132, 199, 0.12));
+      border: 1px solid rgba(13, 148, 136, 0.3);
+      border-radius: 20px;
+      padding: 24px;
+      margin-bottom: 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 12px 30px -10px rgba(13, 148, 136, 0.15);
+      position: relative;
+      overflow: hidden;
+    }
+    .recommendation-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 4px; height: 100%;
+      background: linear-gradient(to bottom, #0d9488, #0284c7);
+    }
+
+    /* Tier Sections */
+    .tier-section {
+      margin-bottom: 40px;
+    }
+    .tier-title {
+      font-size: 19px;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      letter-spacing: -0.5px;
+    }
+    .tier-title span {
+      background: rgba(255, 255, 255, 0.8);
+      padding: 6px 10px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+
+    /* Practice Grid & Cards */
+    .practice-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 18px;
+    }
+    .practice-card {
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: 20px;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      text-decoration: none;
+      color: inherit;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.04);
+    }
+    .practice-card:hover {
+      border-color: rgba(13, 148, 136, 0.5);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px -12px rgba(13, 148, 136, 0.15);
+      background: rgba(255, 255, 255, 0.95);
+    }
+    .practice-main {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-grow: 1;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+    }
+    .practice-main:hover {
+      text-decoration: none;
+    }
+    .practice-icon {
+      font-size: 20px;
+      background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 14px;
+      flex-shrink: 0;
+      box-shadow: inset 0 1px 2px rgba(255,255,255,0.8);
+      color: #334155;
+      font-weight: 700;
+    }
+    .practice-info h4 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 3px;
+      text-decoration: none;
+    }
+    .practice-info p {
+      font-size: 13px;
+      color: #64748b;
+      line-height: 1.4;
+      text-decoration: none;
+    }
+
+    /* Pill-Shaped Progress Badges */
+    .progress-badge {
+      background: #f8fafc;
+      color: #64748b;
+      border: 1px solid #cbd5e1;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 12.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      flex-shrink: 0;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+    }
+    .progress-badge.status-50 {
+      background: #e0f2fe;
+      color: #0284c7;
+      border-color: #38bdf8;
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
+    }
+    .progress-badge.status-100 {
+      background: #d1fae5;
+      color: #059669;
+      border-color: #34d399;
+      box-shadow: 0 0 12px rgba(52, 211, 153, 0.25);
+    }
+    .progress-badge:hover {
+      transform: scale(1.08);
+    }
+
+    /* Action Button */
+    .focus-btn {
+      background: #0f172a;
+      color: #fff;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.2);
+    }
+    .focus-btn:hover {
+      background: #0d9488;
+      box-shadow: 0 6px 16px rgba(13, 148, 136, 0.3);
+      transform: translateY(-1px);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Soft frosted overlay -->
+  <div class="overlay"></div>
+
+  <!-- TOP NAVIGATION BAR -->
+  <nav>
+    <a href="index.html" class="logo" style="text-decoration: none; color: inherit;">
+      <span class="logo-dot">🐍</span>
+      <span>PyFlow</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="lessons.html">Lessons</a></li>
+      <li><a href="practice.html" class="active-link">Practice</a></li>
+      <li><a href="foundations.html">Foundations</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <a href="lessons.html" class="btn-dark">← Roadmap Hub</a>
+    </div>
+  </nav>
+
+  <!-- PRACTICE CONTENT CONTAINER -->
+  <main class="lesson-content-container">
+    
+    <!-- HEADER -->
+    <div style="margin-bottom: 28px;">
+      <div class="card-badge" style="display: inline-block; margin-bottom: 8px;">Interactive Practice Hub</div>
+      <h1 style="font-size: 34px; font-weight: 800; color: #0f172a; letter-spacing: -1.2px;">Beginner to Expert Practice Roadmap</h1>
+      <p style="color: #4b5563; font-size: 15.5px; margin-top: 6px;">Click any session card to open it. Click the progress badge on the right to track completion <span style="font-weight: 600; color: #0d9488;">(0% → 50% → 100%)</span>.</p>
+    </div>
+
+    <!-- PROGRESS OVERVIEW CARD -->
+    <div class="progress-overview">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span style="font-weight: 700; color: #0f172a; font-size: 16px; letter-spacing: -0.3px;">Overall Mastery Progression</span>
+        <strong id="progress-text" style="color: #0d9488; font-size: 17px; font-weight: 800;">0% Completed</strong>
+      </div>
+      <div class="progress-bar-container">
+        <div class="progress-bar-fill" id="progress-bar"></div>
+      </div>
+    </div>
+
+    <!-- RECOMMENDED NEXT SESSION BANNER -->
+    <div class="recommendation-card" id="next-session-banner">
+      <div>
+        <span class="card-badge" style="margin-bottom: 6px; display: inline-block;">Recommended Focus</span>
+        <h3 id="next-title" style="font-size: 19px; font-weight: 800; color: #0f172a; letter-spacing: -0.5px;">Loading...</h3>
+        <p id="next-desc" style="font-size: 14px; color: #4b5563; margin-top: 3px;">Pick up right where you left off.</p>
+      </div>
+      <button class="focus-btn" onclick="focusNextSession()">Open Session →</button>
+    </div>
+
+    <!-- ROADMAP TIERS CONTAINER -->
+    <div id="roadmap-container">
+      <!-- Injected via JavaScript -->
+    </div>
+
+  </main>
+
+  <!-- BOTTOM MINIMAL STATS -->
+  <footer class="bottom-bar">
+    <div class="mini-stat">
+      <small>Active Learners</small>
+      <strong>1,120+</strong>
+    </div>
+    <div class="mini-status">
+      <span class="pulse-dot"></span> Live Tracker Active
+    </div>
+  </footer>
+
+  <!-- PRACTICE PROGRESS LOGIC SCRIPT -->
+  <script>
+    const practiceTiers = [
+      {
+        tier: "Tier 1: Beginner Foundations",
+        icon: "🌱",
+        topics: [
+          { id: "p1_1", title: "Practice: Basic Syntax & Output", desc: "Hands-on exercises for printing and statements.", link: "basic-syntax.html" },
+          { id: "p1_2", title: "Practice: Variable Storage Drills", desc: "Assigning and manipulating memory cells.", link: "variable-storage.html" },
+          { id: "p1_3", title: "Practice: String & Number Casting", desc: "Converting data types and working with operators.", link: "string-casting.html" },
+          { id: "p1_4", title: "Practice: Conditional Logic Challenges", desc: "Building decision trees with if/elif/else.", link: "conditional-logic.html" }
+        ]
+      },
+      {
+        tier: "Tier 2: Intermediate Core",
+        icon: "⚡",
+        topics: [
+          { id: "p2_1", title: "Practice: Loop Automation Drills", desc: "For and while loop iteration challenges.", link: "loop-automation.html" },
+          { id: "p2_2", title: "Practice: Custom Functions & Scope", desc: "Writing modular blocks with return values.", link: "custom-functions.html" },
+          { id: "p2_3", title: "Practice: List & Dictionary Manipulation", desc: "Sorting, filtering, and indexing collections.", link: "list-dictionary.html" },
+          { id: "p2_4", title: "Practice: Exception Handling", desc: "Writing robust try/except safeguards.", link: "exception-handling.html" }
+        ]
+      },
+      {
+        tier: "Tier 3: Advanced Architecture",
+        icon: "🚀",
+        topics: [
+          { id: "p3_1", title: "Practice: OOP Class Blueprints", desc: "Designing objects and attributes from scratch.", link: "oop-blueprints.html" },
+          { id: "p3_2", title: "Practice: Constructors & Methods", desc: "Working with __init__ and dunder methods.", link: "constructors-methods.html" },
+          { id: "p3_3", title: "Practice: API Requests & Parsing", desc: "Connecting to public endpoints and parsing JSON.", link: "api-requests.html" },
+          { id: "p3_4", title: "Practice: FastAPI Endpoints", desc: "Building local asynchronous web routes.", link: "fastapi-endpoints.html" }
+        ]
+      },
+      {
+        tier: "Tier 4: Expert AI & Automation",
+        icon: "🤖",
+        topics: [
+          { id: "p4_1", title: "Practice: URL Parameters & Query Filters", desc: "Extracting dynamic data from requests.", link: "url-parameters.html" },
+          { id: "p4_2", title: "Practice: File System Organizers", desc: "Writing os and shutil batch scripts.", link: "file-system.html" },
+          { id: "p4_3", title: "Practice: Generative AI API Integrations", desc: "Sending prompts and parsing model responses.", link: "ai-integrations.html" },
+          { id: "p4_4", title: "Practice: Production Deployment", desc: "Pushing full-stack code live via GitHub & Cloudflare.", link: "production-deployment.html" }
+        ]
+      }
+    ];
+
+    let userProgress = JSON.parse(localStorage.getItem('pyflow_practice_hub_progress')) || {};
+
+    function renderRoadmap() {
+      const container = document.getElementById('roadmap-container');
+      container.innerHTML = '';
+
+      let totalScoreSum = 0;
+      let totalTopics = 0;
+      let nextTargetLink = "basic-syntax.html";
+      let nextTargetTitle = "Start Practice Session";
+      let nextTargetDesc = "Dive into your first practice module.";
+      let nextFound = false;
+
+      practiceTiers.forEach(tier => {
+        const tierDiv = document.createElement('div');
+        tierDiv.className = 'tier-section';
+        
+        let tierHtml = `<div class="tier-title"><span>${tier.icon}</span> ${tier.tier}</div><div class="practice-grid">`;
+
+        tier.topics.forEach(topic => {
+          totalTopics++;
+          const progressVal = userProgress[topic.id] || 0; // 0, 50, or 100
+          totalScoreSum += progressVal;
+
+          if (progressVal < 100 && !nextFound) {
+            nextFound = true;
+            nextTargetLink = topic.link;
+            nextTargetTitle = topic.title;
+            nextTargetDesc = topic.desc;
+          }
+
+          let badgeClass = "";
+          let iconText = "•";
+          if (progressVal === 50) {
+            badgeClass = "status-50";
+            iconText = "⚡";
+          }
+          if (progressVal === 100) {
+            badgeClass = "status-100";
+            iconText = "✓";
+          }
+
+          tierHtml += `
+            <div class="practice-card">
+              <a href="${topic.link}" class="practice-main">
+                <div class="practice-icon">${iconText}</div>
+                <div class="practice-info">
+                  <h4>${topic.title}</h4>
+                  <p>${topic.desc}</p>
+                </div>
+              </a>
+              <button class="progress-badge ${badgeClass}" onclick="cycleProgress(event, '${topic.id}')">${progressVal}%</button>
+            </div>
+          `;
+        });
+
+        tierHtml += `</div>`;
+        tierDiv.innerHTML = tierHtml;
+        container.appendChild(tierDiv);
+      });
+
+      // Update recommendation banner
+      document.getElementById('next-title').innerText = nextTargetTitle;
+      document.getElementById('next-desc').innerText = nextTargetDesc;
+      window.currentNextLink = nextTargetLink;
+
+      // Calculate global percentage
+      const overallPercentage = Math.round(totalScoreSum / totalTopics);
+      document.getElementById('progress-bar').style.width = overallPercentage + '%';
+      document.getElementById('progress-text').innerText = `${overallPercentage}% Overall Mastery`;
+
+      if (overallPercentage === 100) {
+        document.getElementById('next-title').innerText = "🏆 All Practice Sessions Completed!";
+        document.getElementById('next-desc').innerText = "You have fully mastered every practice module!";
+      }
+    }
+
+    function cycleProgress(event, id) {
+      event.stopPropagation();
+      let current = userProgress[id] || 0;
+      
+      if (current === 0) {
+        userProgress[id] = 50;
+      } else if (current === 50) {
+        userProgress[id] = 100;
+      } else {
+        userProgress[id] = 0;
+      }
+
+      localStorage.setItem('pyflow_practice_hub_progress', JSON.stringify(userProgress));
+      renderRoadmap();
+    }
+
+    function focusNextSession() {
+      if (window.currentNextLink) {
+        window.location.href = window.currentNextLink;
+      }
+    }
+
+    renderRoadmap();
+  </script>
+
+<script src="bot.js"></script>
+</body>
+</html>

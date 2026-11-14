@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PyFlow — Python Functions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Quiz Specific Styles */
+    .quiz-card {
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .quiz-btn {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      padding: 10px 14px;
+      border-radius: 8px;
+      text-align: left;
+      font-size: 14px;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .quiz-btn:hover {
+      background: #e2e8f0;
+      border-color: #94a3b8;
+    }
+    .quiz-btn.selected {
+      background: #e0f2fe !important;
+      border-color: #0284c7 !important;
+      color: #0369a1;
+      font-weight: 600;
+    }
+    .quiz-btn.correct {
+      background: #d1fae5 !important;
+      border-color: #10b981 !important;
+      color: #065f46;
+      font-weight: 600;
+    }
+    .quiz-btn.incorrect {
+      background: #fee2e2 !important;
+      border-color: #ef4444 !important;
+      color: #991b1b;
+    }
+    .check-quiz-btn {
+      display: block;
+      width: 100%;
+      background: #0f172a;
+      color: #fff;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: background 0.2s ease;
+    }
+    .check-quiz-btn:hover {
+      background: #0d9488;
+    }
+    .quiz-results {
+      margin-top: 16px;
+      padding: 18px;
+      border-radius: 12px;
+      background: rgba(13, 148, 136, 0.1);
+      border: 1px solid rgba(13, 148, 136, 0.3);
+      text-align: center;
+      font-weight: 600;
+      color: #0f766e;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Soft frosted overlay -->
+  <div class="overlay"></div>
+
+  <!-- TOP NAVIGATION BAR -->
+  <nav>
+    <a href="data-functions.html" class="logo" style="text-decoration: none; color: inherit;">
+      <span class="logo-dot">🐍</span>
+      <span>PyFlow</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="lessons.html">Lessons</a></li>
+      <li><a href="data-functions.html">Data &amp; Functions</a></li>
+      <li><a href="foundations.html">Foundations</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <a href="data-functions.html" class="btn-dark">← Back to Hub</a>
+    </div>
+  </nav>
+
+  <!-- LESSON CONTENT CONTAINER -->
+  <main class="lesson-content-container">
+    
+    <!-- LESSON HEADER -->
+    <div style="margin-bottom: 30px;">
+      <div class="card-badge" style="display: inline-block; margin-bottom: 8px;">Level 3 • Topic 01</div>
+      <h1 style="font-size: 32px; font-weight: 800; color: #111827; letter-spacing: -1px;">Python Functions</h1>
+      <p style="color: #4b5563; font-size: 15px; margin-top: 4px;">Learn how to write code once and reuse it whenever you want using <code>def</code>.</p>
+    </div>
+
+    <!-- SECTION 1: WHAT IS A FUNCTION? -->
+    <section class="lesson-card" style="display: block; margin-bottom: 20px; padding: 28px;">
+      <div class="card-badge" style="display: inline-block; margin-bottom: 10px;">The Basics</div>
+      <h2 style="font-size: 20px; font-weight: 700; margin-bottom: 12px; color: #111827;">🎂 What is a Function?</h2>
+      <p style="color: #4b5563; font-size: 15px; line-height: 1.6; margin-bottom: 14px;">
+        Imagine you have a favorite recipe. Instead of writing out all the steps every single time you want to bake a cake, you write it down once on a card and call it <strong>"Bake Cake"</strong>. 
+      </p>
+      <p style="color: #4b5563; font-size: 15px; line-height: 1.6; margin-bottom: 14px;">
+        In Python, a function is just a mini-program or a reusable block of code. You use the keyword <code>def</code> (short for "define") to create it.
+      </p>
+      <div style="background: #0f172a; color: #e2e8f0; font-family: 'JetBrains Mono', monospace; font-size: 13.5px; padding: 16px; border-radius: 12px; overflow-x: auto;">
+        <span style="color: #f43f5e;">def</span> <span style="color: #38bdf8;">say_hello</span>():<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #cbd5e1;">print</span>(<span style="color: #34d399;">"Hello, welcome to PyFlow!"</span>)<br><br>
+        <span style="color: #64748b;"># Now, call your function to run it:</span><br>
+        say_hello()
+      </div>
+    </section>
+
+    <!-- SECTION 2: PARAMETERS -->
+    <section class="lesson-card" style="display: block; margin-bottom: 20px; padding: 28px;">
+      <div class="card-badge" style="display: inline-block; margin-bottom: 10px;">Inputs</div>
+      <h2 style="font-size: 20px; font-weight: 700; margin-bottom: 12px; color: #111827;">📥 Giving Information to Functions (Parameters)</h2>
+      <p style="color: #4b5563; font-size: 15px; line-height: 1.6; margin-bottom: 14px;">
+        Sometimes your function needs extra details to do its job. You can pass <strong>parameters</strong> (inputs) inside the parentheses. Think of it like telling a vending machine <em>which</em> snack button to press.
+      </p>
+      <div style="background: #0f172a; color: #e2e8f0; font-family: 'JetBrains Mono', monospace; font-size: 13.5px; padding: 16px; border-radius: 12px; overflow-x: auto;">
+        <span style="color: #f43f5e;">def</span> <span style="color: #38bdf8;">greet_user</span>(name):<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #cbd5e1;">print</span>(<span style="color: #34d399;">f"Hello, {name}!"</span>)<br><br>
+        <span style="color: #64748b;"># Pass different names into the function</span><br>
+        greet_user(<span style="color: #34d399;">"Alex"</span>)<br>
+        greet_user(<span style="color: #34d399;">"Sarah"</span>)
+      </div>
+    </section>
+
+    <!-- SECTION 3: RETURN -->
+    <section class="lesson-card" style="display: block; margin-bottom: 30px; padding: 28px;">
+      <div class="card-badge" style="display: inline-block; margin-bottom: 10px;">Outputs</div>
+      <h2 style="font-size: 20px; font-weight: 700; margin-bottom: 12px; color: #111827;">📤 Getting Answers Back (<code>return</code>)</h2>
+      <p style="color: #4b5563; font-size: 15px; line-height: 1.6; margin-bottom: 14px;">
+        Printing text on the screen is nice, but what if you want your function to do math and give you an answer you can save in a variable? Use the <code>return</code> keyword.
+      </p>
+      <div style="background: #0f172a; color: #e2e8f0; font-family: 'JetBrains Mono', monospace; font-size: 13.5px; padding: 16px; border-radius: 12px; overflow-x: auto;">
+        <span style="color: #f43f5e;">def</span> <span style="color: #38bdf8;">add_numbers</span>(a, b):<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #f43f5e;">return</span> a + b<br><br>
+        <span style="color: #64748b;"># Save the returned result into a variable</span><br>
+        total = add_numbers(<span style="color: #fbbf24;">5</span>, <span style="color: #fbbf24;">3</span>)<br>
+        <span style="color: #cbd5e1;">print</span>(total)  <span style="color: #64748b;"># Output will be 8</span>
+      </div>
+    </section>
+
+    <!-- SELF-GRADING QUIZ SECTION -->
+    <section class="lesson-card" style="display: block; margin-bottom: 30px; padding: 28px;">
+      <div class="card-badge" style="display: inline-block; margin-bottom: 10px;">Knowledge Check</div>
+      <h2 style="font-size: 22px; font-weight: 700; margin-bottom: 20px; color: #111827;">🧠 Test Your Knowledge: Functions Quiz</h2>
+
+      <!-- Question 1 -->
+      <div class="quiz-card" data-q="1">
+        <p style="font-weight: 600; color: #111827; margin-bottom: 4px;">1. Which keyword is used to create or define a function in Python?</p>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 1, false)">A) function</button>
+          <button class="quiz-btn" data-correct="true" onclick="selectOption(this, 1, true)">B) def</button>
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 1, false)">C) define</button>
+        </div>
+      </div>
+
+      <!-- Question 2 -->
+      <div class="quiz-card" data-q="2">
+        <p style="font-weight: 600; color: #111827; margin-bottom: 4px;">2. What are the variables inside the parentheses of a function definition called?</p>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-correct="true" onclick="selectOption(this, 2, true)">A) Parameters</button>
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 2, false)">B) Loops</button>
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 2, false)">C) Strings</button>
+        </div>
+      </div>
+
+      <!-- Question 3 -->
+      <div class="quiz-card" data-q="3">
+        <p style="font-weight: 600; color: #111827; margin-bottom: 4px;">3. What does the <code>return</code> keyword do?</p>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 3, false)">A) Prints text directly to the console window</button>
+          <button class="quiz-btn" data-correct="true" onclick="selectOption(this, 3, true)">B) Sends a calculated value back to the main program</button>
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 3, false)">C) Stops the Python program completely</button>
+        </div>
+      </div>
+
+      <!-- Question 4 -->
+      <div class="quiz-card" data-q="4">
+        <p style="font-weight: 600; color: #111827; margin-bottom: 4px;">4. How do you correctly execute or run a function named <code>start_engine</code>?</p>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 4, false)">A) run start_engine</button>
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 4, false)">B) call.start_engine()</button>
+          <button class="quiz-btn" data-correct="true" onclick="selectOption(this, 4, true)">C) start_engine()</button>
+        </div>
+      </div>
+
+      <!-- Question 5 -->
+      <div class="quiz-card" data-q="5">
+        <p style="font-weight: 600; color: #111827; margin-bottom: 4px;">5. What is the main benefit of writing functions?</p>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 5, false)">A) They make your computer run games faster</button>
+          <button class="quiz-btn" data-correct="true" onclick="selectOption(this, 5, true)">B) They let you write code once and reuse it multiple times</button>
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 5, false)">C) They automatically fix syntax errors</button>
+        </div>
+      </div>
+
+      <!-- Check Answers Button -->
+      <button class="check-quiz-btn" onclick="checkAllAnswers()">Check My Answers</button>
+      
+      <!-- Results Greeting Box -->
+      <div class="quiz-results" id="quiz-results"></div>
+
+    </section>
+
+    <!-- NAVIGATION TO NEXT TOPIC -->
+    <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.7); padding: 20px; border-radius: 16px; border: 1px solid rgba(0,0,0,0.05);">
+      <a href="data-functions.html" style="text-decoration: none; color: #4b5563; font-weight: 600; font-size: 14px;">← Back to Data Hub</a>
+      <a href="lists-tuples.html" style="text-decoration: none; background: #0f172a; color: #fff; padding: 10px 20px; border-radius: 10px; font-weight: 600; font-size: 14px;">Next: Lists &amp; Tuples →</a>
+    </div>
+
+  </main>
+
+  <div class="mini-stat"><small>Platform Version</small><strong>PyFlow v1.0</strong></div>
+    <div class="mini-status">
+      <span class="pulse-dot"></span> Python 3.13 Ready
+    </div>
+  </footer>
+
+  <!-- QUIZ INTERACTIVITY SCRIPT -->
+  <script>
+    let userAnswers = {};
+
+    function selectOption(button, questionNum, isCorrect) {
+      const card = button.closest('.quiz-card');
+      const buttons = card.querySelectorAll('.quiz-btn');
+      
+      buttons.forEach(btn => btn.classList.remove('selected'));
+      button.classList.add('selected');
+      userAnswers[questionNum] = isCorrect;
+    }
+
+    function checkAllAnswers() {
+      let score = 0;
+      let total = 5;
+
+      if (Object.keys(userAnswers).length < total) {
+        alert("Please answer all 5 questions before checking!");
+        return;
+      }
+
+      for (let i = 1; i <= total; i++) {
+        const card = document.querySelector(`.quiz-card[data-q="${i}"]`);
+        const buttons = card.querySelectorAll('.quiz-btn');
+        
+        buttons.forEach(btn => {
+          const isCorrectBtn = btn.getAttribute('data-correct') === 'true';
+          const isSelected = btn.classList.contains('selected');
+          
+          btn.style.pointerEvents = 'none';
+
+          if (isCorrectBtn) {
+            btn.classList.add('correct');
+          } else if (isSelected && !isCorrectBtn) {
+            btn.classList.add('incorrect');
+          }
+        });
+
+        if (userAnswers[i] === true) {
+          score++;
+        }
+      }
+
+      const resultsDiv = document.getElementById('quiz-results');
+      resultsDiv.style.display = 'block';
+
+      let message = "";
+      if (score === 5) {
+        message = `🎉 Outstanding! You scored 5 out of 5! You've completely mastered Python functions.`;
+      } else if (score >= 3) {
+        message = `👍 Great effort! You scored ${score} out of 5. Review the code snippets above to polish up!`;
+      } else {
+        message = `💪 You scored ${score} out of 5. Don't worry—review the guide above and give it another shot!`;
+      }
+
+      resultsDiv.innerHTML = message;
+    }
+  </script>
+
+<script src="bot.js"></script>
+</body>
+</html>

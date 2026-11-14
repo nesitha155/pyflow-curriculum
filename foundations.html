@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PyFlow — Python Foundations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Soft frosted overlay -->
+  <div class="overlay"></div>
+
+  <!-- TOP NAVIGATION BAR -->
+  <nav>
+    <a href="lessons.html" class="logo" style="text-decoration: none; color: inherit;">
+      <span class="logo-dot">🐍</span>
+      <span>PyFlow</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="lessons.html">Lessons</a></li>
+      <li><a href="foundations.html" class="active-link">Foundations</a></li>
+      <li><a href="index.html">Home</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search topics...">
+        <span>🔍</span>
+      </div>
+      <a href="lessons.html" class="btn-dark">Back to Roadmap</a>
+    </div>
+  </nav>
+
+  <!-- FOUNDATIONS CONTENT CONTAINER -->
+  <main class="lesson-content-container">
+    
+    <!-- HUB HEADER -->
+    <div style="margin-bottom: 30px;">
+      <div class="card-badge" style="display: inline-block; margin-bottom: 8px;">Level 1</div>
+      <h1 style="font-size: 32px; font-weight: 800; color: #111827; letter-spacing: -1px;">Python Foundations</h1>
+      <p style="color: #4b5563; font-size: 15px; margin-top: 4px;">Master the fundamental core protocols and syntax required to write your first Python programs.</p>
+    </div>
+
+    <!-- TOPICS GRID -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+      
+      <!-- Topic 1 -->
+      <a href="hello-world.html" class="lesson-card" style="text-decoration: none; color: inherit;">
+        <div>
+          <div class="card-badge">Topic 01</div>
+          <h3>The "Hello World" Protocol</h3>
+          <p>Learn how Python executes syntax and prints output directly to your terminal screen.</p>
+        </div>
+        <span class="card-link">Explore Topic →</span>
+      </a>
+
+      <!-- Topic 2 -->
+      <a href="variables.html" class="lesson-card" style="text-decoration: none; color: inherit;">
+        <div>
+          <div class="card-badge">Topic 02</div>
+          <h3>Variables &amp; Memory Cells</h3>
+          <p>Allocate storage in the system memory core to save data values using assignment operators.</p>
+        </div>
+        <span class="card-link">Explore Topic →</span>
+      </a>
+
+      <!-- Topic 3 -->
+      <a href="datatypes.html" class="lesson-card" style="text-decoration: none; color: inherit;">
+        <div>
+          <div class="card-badge">Topic 03</div>
+          <h3>Data Types (Strings &amp; Numbers)</h3>
+          <p>Understand text (str), whole numbers (int), decimals (float), and logical booleans (bool).</p>
+        </div>
+        <span class="card-link">Explore Topic →</span>
+      </a>
+
+      <!-- Topic 4 -->
+      <a href="oop.html" class="lesson-card" style="text-decoration: none; color: inherit;">
+        <div>
+          <div class="card-badge">Topic 04</div>
+          <h3>Object-Oriented Programming (OOP)</h3>
+          <p>Master classes, blueprints, constructors (__init__), and object instantiation.</p>
+        </div>
+        <span class="card-link">Explore Topic →</span>
+      </a>
+
+      <!-- Topic 5 -->
+      <a href="input.html" class="lesson-card" style="text-decoration: none; color: inherit;">
+        <div>
+          <div class="card-badge">Topic 05</div>
+          <h3>Neural Input &amp; Type Conversions</h3>
+          <p>Capture interactive user input streams and cast data safely using int() and float().</p>
+        </div>
+        <span class="card-link">Explore Topic →</span>
+      </a>
+
+      <!-- Topic 6 -->
+      <a href="fstrings.html" class="lesson-card" style="text-decoration: none; color: inherit;">
+        <div>
+          <div class="card-badge">Topic 06</div>
+          <h3>f-Strings &amp; String Formatting</h3>
+          <p>Interpolate variables and evaluate inline math expressions cleanly using f"" literals.</p>
+        </div>
+        <span class="card-link">Explore Topic →</span>
+      </a>
+
+    </div>
+
+  </main>
+
+  <div class="mini-stat"><small>Platform Version</small><strong>PyFlow v1.0</strong></div>
+    <div class="mini-status">
+      <span class="pulse-dot"></span> Python 3.13 Ready
+    </div>
+  </footer>
+
+<script src="bot.js"></script>
+</body>
+</html>

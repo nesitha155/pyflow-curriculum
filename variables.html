@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PyFlow — Variables & Memory Cells</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .var-split-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 30px;
+    }
+    @media (max-width: 768px) {
+      .var-split-grid { grid-template-columns: 1fr; }
+    }
+    .box-analogy-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+      margin-bottom: 24px;
+    }
+    .storage-box-visual {
+      background: #0f172a;
+      border: 2px dashed #2dd4bf;
+      border-radius: 16px;
+      padding: 16px;
+      text-align: center;
+      margin-top: 14px;
+      font-family: monospace;
+    }
+    .rule-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      font-size: 13px;
+    }
+    .rule-table th, .rule-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(17, 24, 39, 0.08);
+      text-align: left;
+    }
+    .rule-table th {
+      color: #0d9488;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Soft frosted overlay -->
+  <div class="overlay"></div>
+
+  <!-- TOP NAVIGATION BAR -->
+  <nav>
+    <a href="foundations.html" class="logo" style="text-decoration: none; color: inherit;">
+      <span class="logo-dot">🐍</span>
+      <span>PyFlow</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="lessons.html">Lessons</a></li>
+      <li><a href="foundations.html" class="active-link">Foundations</a></li>
+      <li><a href="index.html">Home</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <a href="foundations.html" class="btn-dark">← Back to Topics</a>
+    </div>
+  </nav>
+
+  <!-- LESSON CONTENT CONTAINER -->
+  <main class="lesson-content-container">
+    
+    <!-- TOPIC HEADER BANNER -->
+    <div style="margin-bottom: 24px;">
+      <div class="card-badge" style="display: inline-block; margin-bottom: 8px;">Protocol 02 • Level 1</div>
+      <h1 style="font-size: 32px; font-weight: 800; color: #111827; letter-spacing: -1px;">Variables & Memory Cells</h1>
+      <p style="color: #4b5563; font-size: 15px; margin-top: 4px;">Store, change, and name data values safely inside Python memory.</p>
+    </div>
+
+    <!-- SECTION 1: SPLIT CARD - BASICS & REASSIGNMENT -->
+    <div class="var-split-grid">
+      
+      <!-- LEFT: THE STORAGE BOX ANALOGY -->
+      <div class="box-analogy-card" style="margin-bottom: 0;">
+        <h3 style="font-size: 18px; font-weight: 700; color: #111827; margin-bottom: 10px;">📦 The Storage Box Concept</h3>
+        <p style="font-size: 14px; color: #374151; line-height: 1.6; margin-bottom: 12px;">
+          Think of a variable like a labeled cardboard storage box. You write a name on the outside (the variable name), and put an item inside (the value) using the <code>=</code> assignment operator.
+        </p>
+
+        <!-- Interactive Visual Storage Box -->
+        <div class="storage-box-visual">
+          <span style="font-size: 11px; color: #94a3b8; text-transform: uppercase;">[ Box Label ]</span><br>
+          <span id="box-label-text" style="color: #2dd4bf; font-weight: bold; font-size: 15px;">player_score</span>
+          <div style="margin-top: 8px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 8px;">
+            <span style="font-size: 11px; color: #94a3b8; text-transform: uppercase;">[ Stored Value ]</span><br>
+            <span id="box-value-text" style="color: #ffffff; font-size: 16px; font-weight: bold;">50</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: VARIABLE REASSIGNMENT -->
+      <div class="box-analogy-card" style="margin-bottom: 0;">
+        <h3 style="font-size: 18px; font-weight: 700; color: #111827; margin-bottom: 10px;">🔄 Changing Variables (Reassignment)</h3>
+        <p style="font-size: 14px; color: #374151; line-height: 1.6; margin-bottom: 12px;">
+          Variables are mutable—meaning their values can change while your program runs. When you assign a new value to an existing variable name, Python replaces the old value instantly.
+        </p>
+        
+        <div class="code-snippet-box" style="margin: 0; padding: 14px;">
+          <code>
+            <span style="color: #6b7280;"># 1. Initial assignment</span><br>
+            score = <span style="color: #f59e0b;">50</span><br>
+            <span style="color: #6b7280;"># 2. Reassignment (updating value)</span><br>
+            score = score + <span style="color: #f59e0b;">10</span> <span style="color: #6b7280;"># Now score is 60!</span>
+          </code>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- SECTION 2: VALID VS INVALID NAMING RULES -->
+    <div class="box-analogy-card">
+      <h3 style="font-size: 18px; font-weight: 700; color: #111827; margin-bottom: 10px;">🏷️ Variable Naming Rules & Best Practices</h3>
+      <p style="font-size: 14px; color: #374151; line-height: 1.6; margin-bottom: 14px;">
+        Python is strict about how you name your variables. If you break these rules, Python will throw a <code>SyntaxError</code> before your program even starts.
+      </p>
+
+      <table class="rule-table">
+        <thead>
+          <tr>
+            <th>Rule Category</th>
+            <th>✅ Valid Example</th>
+            <th>❌ Invalid Example (Error)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Cannot start with a number</strong></td>
+            <td><code>robot_1 = "Atlas"</code></td>
+            <td><code>1_robot = "Atlas"</code> (Starts with digit)</td>
+          </tr>
+          <tr>
+            <td><strong>No spaces allowed</strong></td>
+            <td><code>battery_level = 100</code></td>
+            <td><code>battery level = 100</code> (Has a space)</td>
+          </tr>
+          <tr>
+            <td><strong>Case Sensitive</strong></td>
+            <td><code>Score = 10</code> and <code>score = 20</code> are two separate variables!</td>
+            <td>N/A (Just watch out for uppercase mistakes)</td>
+          </tr>
+          <tr>
+            <td><strong>No special symbols</strong></td>
+            <td><code>user_age = 25</code></td>
+            <td><code>user-age = 25</code> or <code>user$ = 25</code></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div style="margin-top: 16px; background: rgba(13, 148, 136, 0.08); border-left: 3px solid #0d9488; padding: 12px; border-radius: 6px;">
+        <p style="font-size: 13px; color: #111827; margin: 0;">
+          💡 <strong>Pro Tip (snake_case):</strong> Always name multi-word variables using lowercase letters separated by underscores, like <code>total_score</code> or <code>player_health_status</code>. Avoid using Python's built-in keywords (like <code>print</code>, <code>if</code>, or <code>for</code>) as variable names!
+        </p>
+      </div>
+    </div>
+
+    <!-- PART 3: 5-QUESTION QUIZ CHECKPOINT WITH GREEN/RED HIGHLIGHTS -->
+    <section class="quiz-container">
+      <h2>🧠 Knowledge Checkpoint</h2>
+      <p class="quiz-sub">Test your mastery of variable assignment, reassignment, and naming rules.</p>
+
+      <!-- Question 1 -->
+      <div class="quiz-card">
+        <p class="q-title">1. What symbol is used to assign a value to a variable in Python?</p>
+        <div class="options">
+          <label><input type="radio" name="q1" value="wrong"> ==</label>
+          <label><input type="radio" name="q1" value="correct"> =</label>
+          <label><input type="radio" name="q1" value="wrong"> :</label>
+        </div>
+      </div>
+
+      <!-- Question 2 -->
+      <div class="quiz-card">
+        <p class="q-title">2. Why will <code>3rd_player = "Alex"</code> crash with a SyntaxError?</p>
+        <div class="options">
+          <label><input type="radio" name="q2" value="wrong"> Because text strings need double quotes</label>
+          <label><input type="radio" name="q2" value="correct"> Because variable names cannot start with a number</label>
+          <label><input type="radio" name="q2" value="wrong"> Because 3rd is a reserved Python keyword</label>
+        </div>
+      </div>
+
+      <!-- Question 3 -->
+      <div class="quiz-card">
+        <p class="q-title">3. If you write <code>score = 10</code> and later write <code>score = 25</code>, what is the final value of score?</p>
+        <div class="options">
+          <label><input type="radio" name="q3" value="correct"> 25 (the old value is replaced)</label>
+          <label><input type="radio" name="q3" value="wrong"> 35 (they add together automatically)</label>
+          <label><input type="radio" name="q3" value="wrong"> Python throws a duplicate name error</label>
+        </div>
+      </div>
+
+      <!-- Question 4 -->
+      <div class="quiz-card">
+        <p class="q-title">4. Are <code>UserScore</code> and <code>userscore</code> treated as the same variable in Python?</p>
+        <div class="options">
+          <label><input type="radio" name="q4" value="wrong"> Yes, Python ignores capital letters</label>
+          <label><input type="radio" name="q4" value="correct"> No, Python is case-sensitive so they are completely different</label>
+          <label><input type="radio" name="q4" value="wrong"> Only if you declare them as global variables</label>
+        </div>
+      </div>
+
+      <!-- Question 5 -->
+      <div class="quiz-card">
+        <p class="q-title">5. Which of the following is written in correct Python <code>snake_case</code> style?</p>
+        <div class="options">
+          <label><input type="radio" name="q5" value="wrong"> player-health-points</label>
+          <label><input type="radio" name="q5" value="correct"> player_health_points</label>
+          <label><input type="radio" name="q5" value="wrong"> PlayerHealthPoints</label>
+        </div>
+      </div>
+
+      <button class="glow-btn submit-btn" onclick="checkQuiz()">SUBMIT ANSWERS</button>
+      <div id="quiz-result" class="quiz-result"></div>
+    </section>
+
+  </main>
+
+  <div class="mini-stat"><small>Platform Version</small><strong>PyFlow v1.0</strong></div>
+    <div class="mini-status">
+      <span class="pulse-dot"></span> Python 3.13 Ready
+    </div>
+  </footer>
+
+  <script>
+    function checkQuiz() {
+      let score = 0;
+      let total = 5;
+      
+      for(let i = 1; i <= total; i++) {
+        const options = document.querySelectorAll(`input[name="q${i}"]`);
+        
+        options.forEach(input => {
+          const label = input.parentElement;
+          
+          // Reset highlights
+          label.style.background = "transparent";
+          label.style.border = "none";
+          label.style.padding = "0";
+          label.style.color = "#374151";
+          label.style.fontWeight = "normal";
+          
+          // Highlight correct answer in Green
+          if(input.value === "correct") {
+            label.style.background = "rgba(16, 185, 129, 0.15)";
+            label.style.border = "1px solid #10b981";
+            label.style.borderRadius = "8px";
+            label.style.padding = "6px 10px";
+            label.style.color = "#065f46";
+            label.style.fontWeight = "600";
+          }
+          
+          // Highlight incorrect selected choice in Red
+          if(input.checked && input.value === "wrong") {
+            label.style.background = "rgba(239, 68, 68, 0.15)";
+            label.style.border = "1px solid #ef4444";
+            label.style.borderRadius = "8px";
+            label.style.padding = "6px 10px";
+            label.style.color = "#991b1b";
+            label.style.fontWeight = "600";
+          }
+        });
+
+        // Tally score
+        const selected = document.querySelector(`input[name="q${i}"]:checked`);
+        if(selected && selected.value === "correct") {
+          score++;
+        }
+      }
+
+      // Display result box
+      const resultBox = document.getElementById("quiz-result");
+      resultBox.innerHTML = `Your Score: <strong>${score} / ${total}</strong> ${score === 5 ? '🎉 Outstanding! Perfect Score!' : '💡 Review the naming rules table above and check highlighted answers!'}`;
+      resultBox.style.display = "block";
+    }
+  </script>
+<script src="bot.js"></script>
+</body>
+</html>

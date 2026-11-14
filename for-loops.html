@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PyFlow — Level 2: For Loops & Iterables</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .loop-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+      margin-bottom: 24px;
+    }
+    .conveyor-track {
+      display: flex;
+      gap: 10px;
+      margin: 16px 0;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+    .conveyor-item {
+      background: rgba(15, 23, 42, 0.05);
+      border: 1px solid rgba(17, 24, 39, 0.1);
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-family: monospace;
+      font-weight: 600;
+      font-size: 13px;
+      color: #374151;
+      transition: all 0.2s ease;
+      text-align: center;
+      flex-shrink: 0;
+    }
+    .conveyor-item.active-item {
+      background: rgba(45, 212, 191, 0.2);
+      border-color: #2dd4bf;
+      color: #0f172a;
+      box-shadow: 0 4px 12px rgba(45, 212, 191, 0.3);
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Soft frosted overlay -->
+  <div class="overlay"></div>
+
+  <!-- TOP NAVIGATION BAR -->
+  <nav>
+    <a href="foundations.html" class="logo" style="text-decoration: none; color: inherit;">
+      <span class="logo-dot">🐍</span>
+      <span>PyFlow</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="lessons.html">Lessons</a></li>
+      <li><a href="control-flow.html" class="active-link">Control Flow</a></li>
+      <li><a href="foundations.html">Foundations</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <a href="control-flow.html" class="btn-dark">← Back to Hub</a>
+    </div>
+  </nav>
+
+  <!-- LESSON CONTENT CONTAINER -->
+  <main class="lesson-content-container">
+    
+    <!-- TOPIC HEADER BANNER -->
+    <div style="margin-bottom: 24px;">
+      <div class="card-badge" style="display: inline-block; margin-bottom: 8px;">Protocol 03 • Level 2 Control Flow</div>
+      <h1 style="font-size: 32px; font-weight: 800; color: #111827; letter-spacing: -1px;">For Loops & Iterables</h1>
+      <p style="color: #4b5563; font-size: 15px; margin-top: 4px;">Iterate efficiently across sequences, lists, strings, and numerical ranges.</p>
+    </div>
+
+    <!-- SECTION 1: WHAT IS A FOR LOOP? -->
+    <div class="loop-card">
+      <h3 style="font-size: 18px; font-weight: 700; color: #111827; margin-bottom: 10px;">🔁 Stepping Through Collections with <code>for</code></h3>
+      <p style="font-size: 14px; color: #374151; line-height: 1.6; margin-bottom: 16px;">
+        While a <code>while</code> loop runs based on a condition, a <strong><code>for</code> loop</strong> is designed to iterate through a known collection of items (called an <strong>iterable</strong>), such as a list of items, characters in a string, or a numerical sequence.
+      </p>
+
+      <div class="code-snippet-box" style="margin: 0;">
+        <div class="code-bar">
+          <span>conveyor_belt.py</span>
+          <span style="color: #2dd4bf;">● Sequence Iterator</span>
+        </div>
+        <code>
+          robots = [<span style="color: #10b981;">"Atlas"</span>, <span style="color: #10b981;">"Orion"</span>, <span style="color: #10b981;">"Titan"</span>]<br><br>
+          <span style="color: #0d9488; font-weight: 600;">for</span> bot <span style="color: #0d9488; font-weight: 600;">in</span> robots:<br>
+          &nbsp;&nbsp;<span style="color: #0d9488; font-weight: 600;">print</span>(f<span style="color: #10b981;">"Calibrating unit: {bot}"</span>)
+        </code>
+      </div>
+    </div>
+
+    <!-- SECTION 2: THE RANGE FUNCTION & INTERACTIVE CONVEYOR SIMULATOR -->
+    <div class="loop-card">
+      <h3 style="font-size: 18px; font-weight: 700; color: #111827; margin-bottom: 10px;">⚙️ The Magic of <code>range()</code> & Interactive Simulation</h3>
+      <p style="font-size: 14px; color: #374151; line-height: 1.6; margin-bottom: 14px;">
+        When you want to repeat a task a specific number of times without a pre-existing list, Python's built-in <strong><code>range(start, stop)</code></strong> function automatically generates a sequence of numbers on the fly!
+      </p>
+
+      <!-- Conveyor Track Visual Elements -->
+      <div class="conveyor-track">
+        <div class="conveyor-item" id="node-0">Index 0: "Alpha"</div>
+        <div class="conveyor-item" id="node-1">Index 1: "Beta"</div>
+        <div class="conveyor-item" id="node-2">Index 2: "Gamma"</div>
+        <div class="conveyor-item" id="node-3">Index 3: "Delta"</div>
+      </div>
+
+      <button onclick="runConveyorSimulation()" style="background: #0f172a; color: #2dd4bf; border: none; padding: 10px 18px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 12px; margin: 10px 0 14px 0;">▶ Run Conveyor Iteration</button>
+
+      <div class="code-snippet-box" style="margin: 0;">
+        <div class="code-bar">
+          <span>range_protocol.py</span>
+          <span style="color: #10b981;">● Execution Output</span>
+        </div>
+        <code>
+          <span style="color: #0d9488; font-weight: 600;">for</span> i <span style="color: #0d9488; font-weight: 600;">in</span> <span style="color: #3b82f6;">range</span>(<span style="color: #f59e0b;">4</span>):<br>
+          &nbsp;&nbsp;<span style="color: #0d9488; font-weight: 600;">print</span>(f<span style="color: #10b981;">"Processing sequence step {i}"</span>)
+        </code>
+
+        <div id="terminal-output" class="terminal-output" style="display: none; margin-top: 14px;">
+          <span style="color: #2dd4bf;">> Processing sequence step 0</span><br>
+          <span style="color: #2dd4bf;">> Processing sequence step 1</span><br>
+          <span style="color: #2dd4bf;">> Processing sequence step 2</span><br>
+          <span style="color: #10b981;">> Processing sequence step 3 — Batch complete!</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PART 2: 5-QUESTION QUIZ CHECKPOINT WITH GREEN/RED HIGHLIGHTS -->
+    <section class="quiz-container">
+      <h2>🧠 Knowledge Checkpoint</h2>
+      <p class="quiz-sub">Test your mastery of for loops and iterable sequences.</p>
+
+      <!-- Question 1 -->
+      <div class="quiz-card">
+        <p class="q-title">1. What is the primary purpose of a <code>for</code> loop in Python?</p>
+        <div class="options">
+          <label><input type="radio" name="q1" value="correct"> To iterate sequentially across items in a collection or sequence</label>
+          <label><input type="radio" name="q1" value="wrong"> To create permanent database tables</label>
+          <label><input type="radio" name="q1" value="wrong"> To perform emergency system shutdowns</label>
+        </div>
+      </div>
+
+      <!-- Question 2 -->
+      <div class="quiz-card">
+        <p class="q-title">2. What does <code>range(3)</code> produce when evaluated in a for loop?</p>
+        <div class="options">
+          <label><input type="radio" name="q2" value="wrong"> Numbers 1, 2, and 3</label>
+          <label><input type="radio" name="q2" value="correct"> Numbers 0, 1, and 2 (starting at 0 up to, but not including, 3)</label>
+          <label><input type="radio" name="q2" value="wrong"> Exactly 3 random decimals</label>
+        </div>
+      </div>
+
+      <!-- Question 3 -->
+      <div class="quiz-card">
+        <p class="q-title">3. Which of the following is considered an "iterable" in Python?</p>
+        <div class="options">
+          <label><input type="radio" name="q3" value="wrong"> A single integer number like <code>100</code></label>
+          <label><input type="radio" name="q3" value="correct"> A list, string, or range sequence containing multiple items</label>
+          <label><input type="radio" name="q3" value="wrong"> A boolean value (True or False)</label>
+        </div>
+      </div>
+
+      <!-- Question 4 -->
+      <div class="quiz-card">
+        <p class="q-title">4. What will be the output of: <code>for char in "Py": print(char)</code>?</p>
+        <div class="options">
+          <label><input type="radio" name="q4" value="wrong"> Py</label>
+          <label><input type="radio" name="q4" value="correct"> P<br>&nbsp;&nbsp;y</label>
+          <label><input type="radio" name="q4" value="wrong"> Error because strings cannot be looped</label>
+        </div>
+      </div>
+
+      <!-- Question 5 -->
+      <div class="quiz-card">
+        <p class="q-title">5. In the loop statement <code>for item in inventory:</code>, what does the variable <code>item</code> represent?</p>
+        <div class="options">
+          <label><input type="radio" name="q5" value="correct"> The current individual element being processed in the current iteration cycle</label>
+          <label><input type="radio" name="q5" value="wrong"> The total number of items in the list</label>
+          <label><input type="radio" name="q5" value="wrong"> A global Python keyword</label>
+        </div>
+      </div>
+
+      <button class="glow-btn submit-btn" onclick="checkQuiz()">SUBMIT ANSWERS</button>
+      <div id="quiz-result" class="quiz-result"></div>
+    </section>
+
+  </main>
+
+  <div class="mini-stat"><small>Platform Version</small><strong>PyFlow v1.0</strong></div>
+    <div class="mini-status">
+      <span class="pulse-dot"></span> Python 3.13 Ready
+    </div>
+  </footer>
+
+  <script>
+    function runConveyorSimulation() {
+      const outputBox = document.getElementById("terminal-output");
+      outputBox.style.display = "block";
+
+      // Animate active conveyor items
+      const items = document.querySelectorAll(".conveyor-item");
+      items.forEach((item, index) => {
+        setTimeout(() => {
+          items.forEach(el => el.classList.remove("active-item"));
+          item.classList.add("active-item");
+        }, index * 400);
+      });
+    }
+
+    function checkQuiz() {
+      let score = 0;
+      let total = 5;
+      
+      for(let i = 1; i <= total; i++) {
+        const options = document.querySelectorAll(`input[name="q${i}"]`);
+        
+        options.forEach(input => {
+          const label = input.parentElement;
+          
+          label.style.background = "transparent";
+          label.style.border = "none";
+          label.style.padding = "0";
+          label.style.color = "#374151";
+          label.style.fontWeight = "normal";
+          
+          if(input.value === "correct") {
+            label.style.background = "rgba(16, 185, 129, 0.15)";
+            label.style.border = "1px solid #10b981";
+            label.style.borderRadius = "8px";
+            label.style.padding = "6px 10px";
+            label.style.color = "#065f46";
+            label.style.fontWeight = "600";
+          }
+          
+          if(input.checked && input.value === "wrong") {
+            label.style.background = "rgba(239, 68, 68, 0.15)";
+            label.style.border = "1px solid #ef4444";
+            label.style.borderRadius = "8px";
+            label.style.padding = "6px 10px";
+            label.style.color = "#991b1b";
+            label.style.fontWeight = "600";
+          }
+        });
+
+        const selected = document.querySelector(`input[name="q${i}"]:checked`);
+        if(selected && selected.value === "correct") {
+          score++;
+        }
+      }
+
+      const resultBox = document.getElementById("quiz-result");
+      resultBox.innerHTML = `Your Score: <strong>${score} / ${total}</strong> ${score === 5 ? '🎉 Outstanding! Iterable Sequence Mastered.' : '💡 Review the conveyor iteration notes above and check highlighted answers!'}`;
+      resultBox.style.display = "block";
+    }
+  </script>
+<script src="bot.js"></script>
+</body>
+</html>

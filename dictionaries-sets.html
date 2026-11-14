@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PyFlow — Dictionaries &amp; Sets</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Quiz Specific Styles */
+    .quiz-card {
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .quiz-btn {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      padding: 10px 14px;
+      border-radius: 8px;
+      text-align: left;
+      font-size: 14px;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .quiz-btn:hover {
+      background: #e2e8f0;
+      border-color: #94a3b8;
+    }
+    .quiz-btn.selected {
+      background: #e0f2fe !important;
+      border-color: #0284c7 !important;
+      color: #0369a1;
+      font-weight: 600;
+    }
+    .quiz-btn.correct {
+      background: #d1fae5 !important;
+      border-color: #10b981 !important;
+      color: #065f46;
+      font-weight: 600;
+    }
+    .quiz-btn.incorrect {
+      background: #fee2e2 !important;
+      border-color: #ef4444 !important;
+      color: #991b1b;
+    }
+    .check-quiz-btn {
+      display: block;
+      width: 100%;
+      background: #0f172a;
+      color: #fff;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: background 0.2s ease;
+    }
+    .check-quiz-btn:hover {
+      background: #0d9488;
+    }
+    .quiz-results {
+      margin-top: 16px;
+      padding: 18px;
+      border-radius: 12px;
+      background: rgba(13, 148, 136, 0.1);
+      border: 1px solid rgba(13, 148, 136, 0.3);
+      text-align: center;
+      font-weight: 600;
+      color: #0f766e;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Soft frosted overlay -->
+  <div class="overlay"></div>
+
+  <!-- TOP NAVIGATION BAR -->
+  <nav>
+    <a href="data-functions.html" class="logo" style="text-decoration: none; color: inherit;">
+      <span class="logo-dot">🐍</span>
+      <span>PyFlow</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="lessons.html">Lessons</a></li>
+      <li><a href="data-functions.html">Data &amp; Functions</a></li>
+      <li><a href="foundations.html">Foundations</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <a href="data-functions.html" class="btn-dark">← Back to Hub</a>
+    </div>
+  </nav>
+
+  <!-- LESSON CONTENT CONTAINER -->
+  <main class="lesson-content-container">
+    
+    <!-- LESSON HEADER -->
+    <div style="margin-bottom: 30px;">
+      <div class="card-badge" style="display: inline-block; margin-bottom: 8px;">Level 3 • Topic 03</div>
+      <h1 style="font-size: 32px; font-weight: 800; color: #111827; letter-spacing: -1px;">Dictionaries &amp; Sets</h1>
+      <p style="color: #4b5563; font-size: 15px; margin-top: 4px;">Master labeled key-value data structures and unique filtering collections using curly braces <code>{}</code>.</p>
+    </div>
+
+    <!-- SECTION 1: PYTHON DICTIONARIES -->
+    <section class="lesson-card" style="display: block; margin-bottom: 20px; padding: 28px;">
+      <div class="card-badge" style="display: inline-block; margin-bottom: 10px;">Key-Value Pairs</div>
+      <h2 style="font-size: 20px; font-weight: 700; margin-bottom: 12px; color: #111827;">📖 Python Dictionaries (Like a Contact Book)</h2>
+      <p style="color: #4b5563; font-size: 15px; line-height: 1.6; margin-bottom: 14px;">
+        In a list, items are looked up by number index (`0`, `1`, `2`). In a <strong>Dictionary</strong>, items are stored as <strong>key-value pairs</strong> using curly braces <code>{}</code>. Think of looking up a friend's name (the <em>key</em>) to find their phone number (the <em>value</em>).
+      </p>
+      <div style="background: #0f172a; color: #e2e8f0; font-family: 'JetBrains Mono', monospace; font-size: 13.5px; padding: 16px; border-radius: 12px; overflow-x: auto;">
+        <span style="color: #64748b;"># Robot status dictionary</span><br>
+        robot = {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #34d399;">"name"</span>: <span style="color: #34d399;">"PyBot"</span>,<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #34d399;">"battery"</span>: <span style="color: #fbbf24;">85</span>,<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #34d399;">"active"</span>: <span style="color: #f43f5e;">True</span><br>
+        }<br><br>
+        <span style="color: #64748b;"># Access value using its key</span><br>
+        <span style="color: #cbd5e1;">print</span>(robot[<span style="color: #34d399;">"name"</span>])  <span style="color: #64748b;"># Outputs "PyBot"</span>
+      </div>
+    </section>
+
+    <!-- SECTION 2: PYTHON SETS -->
+    <section class="lesson-card" style="display: block; margin-bottom: 30px; padding: 28px;">
+      <div class="card-badge" style="display: inline-block; margin-bottom: 10px;">Unique Items</div>
+      <h2 style="font-size: 20px; font-weight: 700; margin-bottom: 12px; color: #111827;">⭐ Python Sets (VIP Guest List - No Duplicates)</h2>
+      <p style="color: #4b5563; font-size: 15px; line-height: 1.6; margin-bottom: 14px;">
+        A <strong>Set</strong> also uses curly braces <code>{}</code>, but it only holds <strong>unique items</strong>. If you try to add the exact same item twice, Python automatically deletes the duplicate! It's perfect for tracking unique tags or visitor IDs.
+      </p>
+      <div style="background: #0f172a; color: #e2e8f0; font-family: 'JetBrains Mono', monospace; font-size: 13.5px; padding: 16px; border-radius: 12px; overflow-x: auto;">
+        <span style="color: #64748b;"># Notice duplicate "Python" will be removed automatically</span><br>
+        skills = {<span style="color: #34d399;">"Python"</span>, <span style="color: #34d399;">"HTML"</span>, <span style="color: #34d399;">"CSS"</span>, <span style="color: #34d399;">"Python"</span>}<br><br>
+        <span style="color: #cbd5e1;">print</span>(skills)  <span style="color: #64748b;"># Output: {'Python', 'HTML', 'CSS'}</span>
+      </div>
+    </section>
+
+    <!-- SELF-GRADING QUIZ SECTION -->
+    <section class="lesson-card" style="display: block; margin-bottom: 30px; padding: 28px;">
+      <div class="card-badge" style="display: inline-block; margin-bottom: 10px;">Knowledge Check</div>
+      <h2 style="font-size: 22px; font-weight: 700; margin-bottom: 20px; color: #111827;">🧠 Test Your Knowledge: Dictionaries &amp; Sets Quiz</h2>
+
+      <!-- Question 1 -->
+      <div class="quiz-card" data-q="1">
+        <p style="font-weight: 600; color: #111827; margin-bottom: 4px;">1. Which symbols are used to create a Python Dictionary or Set?</p>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 1, false)">A) Square brackets [ ]</button>
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 1, false)">B) Round parentheses ( )</button>
+          <button class="quiz-btn" data-correct="true" onclick="selectOption(this, 1, true)">C) Curly braces { }</button>
+        </div>
+      </div>
+
+      <!-- Question 2 -->
+      <div class="quiz-card" data-q="2">
+        <p style="font-weight: 600; color: #111827; margin-bottom: 4px;">2. How are data items structured inside a Python Dictionary?</p>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-correct="true" onclick="selectOption(this, 2, true)">A) Key-value pairs (e.g., "name": "PyBot")</button>
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 2, false)">B) Numbered index numbers like [0], [1]</button>
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 2, false)">C) Unsorted random values</button>
+        </div>
+      </div>
+
+      <!-- Question 3 -->
+      <div class="quiz-card" data-q="3">
+        <p style="font-weight: 600; color: #111827; margin-bottom: 4px;">3. What special feature does a Python Set have?</p>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 3, false)">A) It sorts items alphabetically automatically</button>
+          <button class="quiz-btn" data-correct="true" onclick="selectOption(this, 3, true)">B) It automatically removes duplicate values</button>
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 3, false)">C) It can only store numbers</button>
+        </div>
+      </div>
+
+      <!-- Question 4 -->
+      <div class="quiz-card" data-q="4">
+        <p style="font-weight: 600; color: #111827; margin-bottom: 4px;">4. Given <code>user = {"name": "Alice", "age": 17}</code>, how do you access Alice's name?</p>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-correct="true" onclick="selectOption(this, 4, true)">A) user["name"]</button>
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 4, false)">B) user[0]</button>
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 4, false)">C) user.name()</button>
+        </div>
+      </div>
+
+      <!-- Question 5 -->
+      <div class="quiz-card" data-q="5">
+        <p style="font-weight: 600; color: #111827; margin-bottom: 4px;">5. What happens if you try to put duplicate values inside a Set?</p>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 5, false)">A) Python crashes with a syntax error</button>
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 5, false)">B) It keeps both copies</button>
+          <button class="quiz-btn" data-correct="true" onclick="selectOption(this, 5, true)">C) Duplicates are automatically discarded</button>
+        </div>
+      </div>
+
+      <!-- Check Answers Button -->
+      <button class="check-quiz-btn" onclick="checkAllAnswers()">Check My Answers</button>
+      
+      <!-- Results Greeting Box -->
+      <div class="quiz-results" id="quiz-results"></div>
+
+    </section>
+
+    <!-- NAVIGATION BACK TO HUB -->
+    <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.7); padding: 20px; border-radius: 16px; border: 1px solid rgba(0,0,0,0.05);">
+      <a href="lists-tuples.html" style="text-decoration: none; color: #4b5563; font-weight: 600; font-size: 14px;">← Prev: Lists &amp; Tuples</a>
+      <a href="data-functions.html" style="text-decoration: none; background: #0f172a; color: #fff; padding: 10px 20px; border-radius: 10px; font-weight: 600; font-size: 14px;">Back to Level 3 Hub 🏠</a>
+    </div>
+
+  </main>
+
+  <div class="mini-stat"><small>Platform Version</small><strong>PyFlow v1.0</strong></div>
+    <div class="mini-status">
+      <span class="pulse-dot"></span> Python 3.13 Ready
+    </div>
+  </footer>
+
+  <!-- QUIZ INTERACTIVITY SCRIPT -->
+  <script>
+    let userAnswers = {};
+
+    function selectOption(button, questionNum, isCorrect) {
+      const card = button.closest('.quiz-card');
+      const buttons = card.querySelectorAll('.quiz-btn');
+      
+      buttons.forEach(btn => btn.classList.remove('selected'));
+      button.classList.add('selected');
+      userAnswers[questionNum] = isCorrect;
+    }
+
+    function checkAllAnswers() {
+      let score = 0;
+      let total = 5;
+
+      if (Object.keys(userAnswers).length < total) {
+        alert("Please answer all 5 questions before checking!");
+        return;
+      }
+
+      for (let i = 1; i <= total; i++) {
+        const card = document.querySelector(`.quiz-card[data-q="${i}"]`);
+        const buttons = card.querySelectorAll('.quiz-btn');
+        
+        buttons.forEach(btn => {
+          const isCorrectBtn = btn.getAttribute('data-correct') === 'true';
+          const isSelected = btn.classList.contains('selected');
+          
+          btn.style.pointerEvents = 'none';
+
+          if (isCorrectBtn) {
+            btn.classList.add('correct');
+          } else if (isSelected && !isCorrectBtn) {
+            btn.classList.add('incorrect');
+          }
+        });
+
+        if (userAnswers[i] === true) {
+          score++;
+        }
+      }
+
+      const resultsDiv = document.getElementById('quiz-results');
+      resultsDiv.style.display = 'block';
+
+      let message = "";
+      if (score === 5) {
+        message = `🎉 Incredible work! You scored 5 out of 5! You have officially completed Level 3: Data & Functions! 🚀`;
+      } else if (score >= 3) {
+        message = `👍 Great job! You scored ${score} out of 5. Check out the highlighted answers above to lock it down!`;
+      } else {
+        message = `💪 You scored ${score} out of 5. Review the dictionary and set examples above and give it another spin!`;
+      }
+
+      resultsDiv.innerHTML = message;
+    }
+  </script>
+
+<script src="bot.js"></script>
+</body>
+</html>

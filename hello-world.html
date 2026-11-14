@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PyFlow — The Hello World Protocol</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Soft frosted overlay -->
+  <div class="overlay"></div>
+
+  <!-- TOP NAVIGATION BAR -->
+  <nav>
+    <a href="foundations.html" class="logo" style="text-decoration: none; color: inherit;">
+      <span class="logo-dot">🐍</span>
+      <span>PyFlow</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="lessons.html">Lessons</a></li>
+      <li><a href="foundations.html" class="active-link">Foundations</a></li>
+      <li><a href="index.html">Home</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <a href="foundations.html" class="btn-dark">← Back to Topics</a>
+    </div>
+  </nav>
+
+  <!-- LESSON CONTENT CONTAINER -->
+  <main class="lesson-content-container">
+    
+    <!-- PART 1: TOPIC EXPLANATION & INTERACTIVE TERMINAL -->
+    <section class="lesson-article-box">
+      <div class="card-badge" style="margin-bottom: 12px;">Protocol 01 • Level 1</div>
+      <h1>The "Hello World" Protocol</h1>
+      <p class="article-lead">Establish your first secure telemetry link with the PyFlow core and initialize your first Python script execution.</p>
+      
+      <div class="explanation-text">
+        <p>Every student stepping into the neural network of coding begins with a traditional handshake: telling the system to speak. In Python, this is executed using the <strong><code>print()</code></strong> command.</p>
+        <p>Think of <code>print()</code> as the system's voice box. Whatever data you pass inside its parentheses gets transmitted straight onto the visual terminal screen.</p>
+      </div>
+
+      <!-- Interactive Code Sandbox Box -->
+      <div class="code-snippet-box">
+        <div class="code-bar">
+          <span>terminal_core.py</span>
+          <span style="color: #2dd4bf; cursor: pointer; font-weight: 700;" onclick="runCode()">▶ Run Protocol</span>
+        </div>
+        <code>
+          <span style="color: #6b7280;"># Transmit text message to terminal</span><br>
+          <span style="color: #0d9488; font-weight: 600;">print</span>(<span style="color: #10b981;">"Hello World!"</span>)
+        </code>
+        
+        <!-- Live Output Box -->
+        <div id="terminal-output" class="terminal-output" style="display: none;">
+          <span style="color: #2dd4bf;">> Executing script...</span><br>
+          <span style="color: #ffffff; font-weight: 600;">Hello World!</span>
+        </div>
+      </div>
+
+      <div class="explanation-text" style="margin-top: 20px;">
+        <p><strong>Critical Syntax Rule:</strong> Text data (strings) must always be wrapped in quotation marks <code>" "</code>. Without them, Python thinks you are trying to call a system variable and will trigger a syntax fault.</p>
+      </div>
+    </section>
+
+    <!-- PART 2: 5-QUESTION QUIZ CHECKPOINT -->
+    <section class="quiz-container">
+      <h2>🧠 Neural Knowledge Checkpoint</h2>
+      <p class="quiz-sub">Test your cognitive sync before proceeding to Memory Cells (Variables).</p>
+
+      <!-- Question 1 -->
+      <div class="quiz-card">
+        <p class="q-title">1. Which command instructs Python to output data to the terminal screen?</p>
+        <div class="options">
+          <label><input type="radio" name="q1" value="wrong"> display()</label>
+          <label><input type="radio" name="q1" value="correct"> print()</label>
+          <label><input type="radio" name="q1" value="wrong"> echo()</label>
+        </div>
+      </div>
+
+      <!-- Question 2 -->
+      <div class="quiz-card">
+        <p class="q-title">2. Why must text strings be enclosed in quotation marks?</p>
+        <div class="options">
+          <label><input type="radio" name="q2" value="wrong"> To make text colorful on screen</label>
+          <label><input type="radio" name="q2" value="correct"> So Python distinguishes text data from system code commands</label>
+          <label><input type="radio" name="q2" value="wrong"> It is optional design style</label>
+        </div>
+      </div>
+
+      <!-- Question 3 -->
+      <div class="quiz-card">
+        <p class="q-title">3. What happens if you execute <code>print(50 + 50)</code>?</p>
+        <div class="options">
+          <label><input type="radio" name="q3" value="correct"> It computes the math and outputs 100</label>
+          <label><input type="radio" name="q3" value="wrong"> It prints literal text "50 + 50"</label>
+          <label><input type="radio" name="q3" value="wrong"> It triggers a syntax error</label>
+        </div>
+      </div>
+
+      <!-- Question 4 -->
+      <div class="quiz-card">
+        <p class="q-title">4. Which of these code lines has valid Python syntax?</p>
+        <div class="options">
+          <label><input type="radio" name="q4" value="wrong"> PRINT("Hello")</label>
+          <label><input type="radio" name="q4" value="correct"> print("Hello")</label>
+          <label><input type="radio" name="q4" value="wrong"> print{Hello}</label>
+        </div>
+      </div>
+
+      <!-- Question 5 -->
+      <div class="quiz-card">
+        <p class="q-title">5. What symbol marks the boundary for a function's input arguments?</p>
+        <div class="options">
+          <label><input type="radio" name="q5" value="wrong"> Square brackets [ ]</label>
+          <label><input type="radio" name="q5" value="correct"> Parentheses ( )</label>
+          <label><input type="radio" name="q5" value="wrong"> Curly braces { }</label>
+        </div>
+      </div>
+
+      <button class="glow-btn submit-btn" onclick="checkQuiz()">SUBMIT PROTOCOL ANSWERS</button>
+      <div id="quiz-result" class="quiz-result"></div>
+    </section>
+
+  </main>
+
+  <div class="mini-stat"><small>Platform Version</small><strong>PyFlow v1.0</strong></div>
+    <div class="mini-status">
+      <span class="pulse-dot"></span> Python 3.13 Ready
+    </div>
+  </footer>
+
+  <script>
+    function runCode() {
+      const outputBox = document.getElementById("terminal-output");
+      outputBox.style.display = "block";
+    }
+
+    function checkQuiz() {
+      let score = 0;
+      let total = 5;
+      
+      for(let i = 1; i <= total; i++) {
+        const options = document.querySelectorAll(`input[name="q${i}"]`);
+        
+        options.forEach(input => {
+          const label = input.parentElement;
+          
+          // Reset any previous highlights when re-submitting
+          label.style.background = "transparent";
+          label.style.border = "none";
+          label.style.padding = "0";
+          label.style.color = "#374151";
+          label.style.fontWeight = "normal";
+          
+          // Highlight the correct answer in Green
+          if(input.value === "correct") {
+            label.style.background = "rgba(16, 185, 129, 0.15)";
+            label.style.border = "1px solid #10b981";
+            label.style.borderRadius = "8px";
+            label.style.padding = "6px 10px";
+            label.style.color = "#065f46";
+            label.style.fontWeight = "600";
+          }
+          
+          // Highlight user's incorrect choice in Red
+          if(input.checked && input.value === "wrong") {
+            label.style.background = "rgba(239, 68, 68, 0.15)";
+            label.style.border = "1px solid #ef4444";
+            label.style.borderRadius = "8px";
+            label.style.padding = "6px 10px";
+            label.style.color = "#991b1b";
+            label.style.fontWeight = "600";
+          }
+        });
+
+        // Tally score
+        const selected = document.querySelector(`input[name="q${i}"]:checked`);
+        if(selected && selected.value === "correct") {
+          score++;
+        }
+      }
+
+      // Display final score result box
+      const resultBox = document.getElementById("quiz-result");
+      resultBox.innerHTML = `Neural Score: <strong>${score} / ${total}</strong> ${score === 5 ? '🎉 Protocol Synced! Absolute Perfection.' : '💡 Review the notes above and check the highlighted answers!'}`;
+      resultBox.style.display = "block";
+    }
+  </script>
+<script src="bot.js"></script>
+</body>
+</html>

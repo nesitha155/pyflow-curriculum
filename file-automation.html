@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PyFlow — Automating Boring Files</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Quiz Specific Styles with smooth hover transitions */
+    .quiz-card {
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 16px;
+      transition: border-color 0.2s ease;
+    }
+    .quiz-card:hover {
+      border-color: rgba(13, 148, 136, 0.3);
+    }
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .quiz-btn {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      padding: 10px 14px;
+      border-radius: 8px;
+      text-align: left;
+      font-size: 14px;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .quiz-btn:hover {
+      background: #e2e8f0;
+      border-color: #94a3b8;
+    }
+    .quiz-btn.selected {
+      background: #e0f2fe !important;
+      border-color: #0284c7 !important;
+      color: #0369a1;
+      font-weight: 600;
+    }
+    .quiz-btn.correct {
+      background: #d1fae5 !important;
+      border-color: #10b981 !important;
+      color: #065f46;
+      font-weight: 600;
+    }
+    .quiz-btn.incorrect {
+      background: #fee2e2 !important;
+      border-color: #ef4444 !important;
+      color: #991b1b;
+    }
+    .check-quiz-btn {
+      display: block;
+      width: 100%;
+      background: #0f172a;
+      color: #fff;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: background 0.2s ease;
+    }
+    .check-quiz-btn:hover {
+      background: #0d9488;
+    }
+    .quiz-results {
+      margin-top: 16px;
+      padding: 18px;
+      border-radius: 12px;
+      background: rgba(13, 148, 136, 0.1);
+      border: 1px solid rgba(13, 148, 136, 0.3);
+      text-align: center;
+      font-weight: 600;
+      color: #0f766e;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Soft frosted overlay -->
+  <div class="overlay"></div>
+
+  <!-- TOP NAVIGATION BAR -->
+  <nav>
+    <a href="index.html" class="logo" style="text-decoration: none; color: inherit;">
+      <span class="logo-dot">🐍</span>
+      <span>PyFlow</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="lessons.html">Lessons</a></li>
+      <li><a href="level-6.html">Level 6 Hub</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <a href="level-6.html" class="btn-dark">← Back to Hub</a>
+    </div>
+  </nav>
+
+  <!-- LESSON CONTENT CONTAINER -->
+  <main class="lesson-content-container">
+    
+    <!-- LESSON HEADER -->
+    <div style="margin-bottom: 30px;">
+      <div class="card-badge" style="display: inline-block; margin-bottom: 8px;">Level 6 • Topic 02</div>
+      <h1 style="font-size: 32px; font-weight: 800; color: #111827; letter-spacing: -1px;">Automating Boring Files</h1>
+      <p style="color: #4b5563; font-size: 15px; margin-top: 4px;">Learn how to write Python scripts that instantly scan folders, organize messy files, and handle bulk operations.</p>
+    </div>
+
+    <!-- SECTION 1: SCANNING DIRECTORIES -->
+    <section class="lesson-card" style="display: block; margin-bottom: 20px; padding: 28px;">
+      <div class="card-badge" style="display: inline-block; margin-bottom: 10px;">File Systems</div>
+      <h2 style="font-size: 20px; font-weight: 700; margin-bottom: 12px; color: #111827;">📂 Scanning Folders with Python</h2>
+      <p style="color: #4b5563; font-size: 15px; line-height: 1.6; margin-bottom: 14px;">
+        Python's built-in <code>os</code> module lets your script look inside any folder on your computer. You can list every file name, check file sizes, and find specific file extensions automatically.
+      </p>
+      <div style="background: #0f172a; color: #e2e8f0; font-family: 'JetBrains Mono', monospace; font-size: 13.5px; padding: 16px; border-radius: 12px; overflow-x: auto;">
+        <span style="color: #f43f5e;">import</span> os<br><br>
+        <span style="color: #64748b;"># List all files and folders in the current directory</span><br>
+        files = os.listdir(<span style="color: #34d399;">"."</span>)<br>
+        <span style="color: #f43f5e;">for</span> file <span style="color: #f43f5e;">in</span> files:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #38bdf8;">print</span>(<span style="color: #34d399;">f"Found item: {</span>file<span style="color: #34d399;">}"</span>)
+      </div>
+    </section>
+
+    <!-- SECTION 2: MOVING AND ORGANIZING -->
+    <section class="lesson-card" style="display: block; margin-bottom: 30px; padding: 28px;">
+      <div class="card-badge" style="display: inline-block; margin-bottom: 10px;">Bulk Operations</div>
+      <h2 style="font-size: 20px; font-weight: 700; margin-bottom: 12px; color: #111827;">📦 Moving &amp; Sorting Files</h2>
+      <p style="color: #4b5563; font-size: 15px; line-height: 1.6; margin-bottom: 14px;">
+        To move files safely, we ensure the destination folder exists using <code>os.makedirs()</code> first. Then, our loop checks each file extension and relocates it instantly with <code>shutil.move()</code>.
+      </p>
+      <div style="background: #0f172a; color: #e2e8f0; font-family: 'JetBrains Mono', monospace; font-size: 13.5px; padding: 16px; border-radius: 12px; overflow-x: auto;">
+        <span style="color: #f43f5e;">import</span> os<br>
+        <span style="color: #f43f5e;">import</span> shutil<br><br>
+        <span style="color: #64748b;"># Create target folder if it doesn't exist yet</span><br>
+        os.makedirs(<span style="color: #34d399;">"images"</span>, exist_ok=<span style="color: #f43f5e;">True</span>)<br><br>
+        <span style="color: #64748b;"># Loop through files and sort .png images</span><br>
+        <span style="color: #f43f5e;">for</span> file <span style="color: #f43f5e;">in</span> os.listdir(<span style="color: #34d399;">"."</span>):<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #f43f5e;">if</span> file.endswith(<span style="color: #34d399;">".png"</span>):<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shutil.move(file, os.path.join(<span style="color: #34d399;">"images"</span>, file))<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #38bdf8;">print</span>(<span style="color: #34d399;">f"Moved {</span>file<span style="color: #34d399;">} to images folder."</span>)
+      </div>
+    </section>
+
+    <!-- SELF-GRADING QUIZ SECTION -->
+    <section class="lesson-card" style="display: block; margin-bottom: 30px; padding: 28px;">
+      <div class="card-badge" style="display: inline-block; margin-bottom: 10px;">Knowledge Check</div>
+      <h2 style="font-size: 22px; font-weight: 700; margin-bottom: 20px; color: #111827;">🧠 Test Your Knowledge: File Automation Quiz</h2>
+
+      <!-- Question 1 -->
+      <div class="quiz-card" data-q="1">
+        <p style="font-weight: 600; color: #111827; margin-bottom: 4px;">1. Which built-in Python module is commonly used to list directory contents?</p>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-correct="true" onclick="selectOption(this, 1, true)">A) os</button>
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 1, false)">B) fastapi</button>
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 1, false)">C) math</button>
+        </div>
+      </div>
+
+      <!-- Question 2 -->
+      <div class="quiz-card" data-q="2">
+        <p style="font-weight: 600; color: #111827; margin-bottom: 4px;">2. What function returns a list of all files and folders in a specified path?</p>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 2, false)">A) os.scan_all()</button>
+          <button class="quiz-btn" data-correct="true" onclick="selectOption(this, 2, true)">B) os.listdir()</button>
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 2, false)">C) os.open_folder()</button>
+        </div>
+      </div>
+
+      <!-- Question 3 -->
+      <div class="quiz-card" data-q="3">
+        <p style="font-weight: 600; color: #111827; margin-bottom: 4px;">3. Which module is typically used for high-level file operations like moving or copying files?</p>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-correct="true" onclick="selectOption(this, 3, true)">A) shutil</button>
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 3, false)">B) json</button>
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 3, false)">C) random</button>
+        </div>
+      </div>
+
+      <!-- Question 4 -->
+      <div class="quiz-card" data-q="4">
+        <p style="font-weight: 600; color: #111827; margin-bottom: 4px;">4. How can you check if a filename ends with a specific extension like '.png' in Python?</p>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 4, false)">A) file.has('.png')</button>
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 4, false)">B) file.contains('.png')</button>
+          <button class="quiz-btn" data-correct="true" onclick="selectOption(this, 4, true)">C) file.endswith('.png')</button>
+        </div>
+      </div>
+
+      <!-- Question 5 -->
+      <div class="quiz-card" data-q="5">
+        <p style="font-weight: 600; color: #111827; margin-bottom: 4px;">5. Why are file automation scripts so powerful for developers?</p>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 5, false)">A) It deletes files randomly</button>
+          <button class="quiz-btn" data-correct="true" onclick="selectOption(this, 5, true)">B) It eliminates tedious manual sorting and organizes large batches of files instantly</button>
+          <button class="quiz-btn" data-correct="false" onclick="selectOption(this, 5, false)">C) It replaces your web browser</button>
+        </div>
+      </div>
+
+      <!-- Check Answers Button -->
+      <button class="check-quiz-btn" onclick="checkAllAnswers()">Check My Answers</button>
+      
+      <!-- Results Greeting Box -->
+      <div class="quiz-results" id="quiz-results"></div>
+
+    </section>
+
+    <!-- NAVIGATION TO PREVIOUS & NEXT TOPIC -->
+    <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.7); padding: 20px; border-radius: 16px; border: 1px solid rgba(0,0,0,0.05);">
+      <a href="ai-basics.html" style="text-decoration: none; color: #4b5563; font-weight: 600; font-size: 14px;">← Prev: What is AI &amp; Automation?</a>
+      <a href="ai-scripts.html" style="text-decoration: none; background: #0f172a; color: #fff; padding: 10px 20px; border-radius: 10px; font-weight: 600; font-size: 14px;">Next: Your First AI Script →</a>
+    </div>
+
+  </main>
+
+  <!-- BOTTOM MINIMAL STATS -->
+  <footer class="bottom-bar">
+    <div class="mini-stat"><small>Platform Version</small><strong>PyFlow v1.0</strong></div>
+  </footer>
+
+  <!-- QUIZ INTERACTIVITY SCRIPT -->
+  <script>
+    let userAnswers = {};
+
+    function selectOption(button, questionNum, isCorrect) {
+      const card = button.closest('.quiz-card');
+      const buttons = card.querySelectorAll('.quiz-btn');
+      
+      buttons.forEach(btn => btn.classList.remove('selected'));
+      button.classList.add('selected');
+      userAnswers[questionNum] = isCorrect;
+    }
+
+    function checkAllAnswers() {
+      let score = 0;
+      let total = 5;
+
+      if (Object.keys(userAnswers).length < total) {
+        alert("Please answer all 5 questions before checking!");
+        return;
+      }
+
+      for (let i = 1; i <= total; i++) {
+        const card = document.querySelector(`.quiz-card[data-q="${i}"]`);
+        const buttons = card.querySelectorAll('.quiz-btn');
+        
+        buttons.forEach(btn => {
+          const isCorrectBtn = btn.getAttribute('data-correct') === 'true';
+          const isSelected = btn.classList.contains('selected');
+          
+          btn.style.pointerEvents = 'none';
+
+          if (isCorrectBtn) {
+            btn.classList.add('correct');
+          } else if (isSelected && !isCorrectBtn) {
+            btn.classList.add('incorrect');
+          }
+        });
+
+        if (userAnswers[i] === true) {
+          score++;
+        }
+      }
+
+      const resultsDiv = document.getElementById('quiz-results');
+      resultsDiv.style.display = 'block';
+
+      let message = "";
+      if (score === 5) {
+        message = "🎉 Excellent work! You scored 5 out of 5! You're ready to automate folder organization.";
+      } else if (score >= 3) {
+        message = "👍 Good job! You scored " + score + " out of 5. Review the os and shutil sections above!";
+      } else {
+        message = "💪 You scored " + score + " out of 5. Take another look at the code examples and try again!";
+      }
+
+      resultsDiv.innerHTML = message;
+    }
+  </script>
+
+<script src="bot.js"></script>
+</body>
+</html>
