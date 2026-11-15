@@ -68,3 +68,33 @@ export async function onRequest(context) {
     });
   }
 }
+
+import { createClient } from '@supabase/supabase-js';
+
+export async function onRequestPost(context) {
+  try {
+    const { request, env } = context;
+    const { prompt } = await request.json();
+
+    // Initialize Supabase with the encrypted secrets bound via Wrangler
+    const supabase = createClient(env.SUPABASE_URL, env.SUPABASE_SECRET_KEY);
+
+    // Your Gemini API response logic here
+    const aiResponse = "PyBot response goes here...";
+
+    // Insert prompt and response into Supabase chat_logs table
+    const { error } = await supabase
+      .from('chat_logs')
+      .insert([{ user_prompt: prompt, response: aiResponse }]);
+
+    if (error) {
+      console.error("Database logging error:", error.message);
+    }
+
+    return new Response(JSON.stringify({ reply: aiResponse }), {
+      headers: { "Content-Type": "application/json" }
+    });
+  } catch (err) {
+    return new Response(JSON.stringify({ error: err.message }), { status: 500 });
+  }
+}
