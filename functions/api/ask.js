@@ -4,9 +4,9 @@ export async function onRequestPost(context) {
   const { request, env } = context;
 
   try {
-    // 1. Parse the incoming student prompt from the frontend
     const body = await request.json();
-    const prompt = body.prompt;
+    // Accept either 'prompt' or 'message' from the frontend payload
+    const prompt = body.prompt || body.message;
 
     if (!prompt) {
       return new Response(JSON.stringify({ error: "Prompt is required" }), {
@@ -15,7 +15,6 @@ export async function onRequestPost(context) {
       });
     }
 
-    // 2. Verify all required environment variables exist in Cloudflare
     if (!env.SUPABASE_URL || !env.SUPABASE_SECRET_KEY || !env.GEMINI_API_KEY) {
       return new Response(JSON.stringify({ 
         error: "Server configuration error: Missing Supabase or Gemini API keys." 
@@ -25,7 +24,7 @@ export async function onRequestPost(context) {
       });
     }
 
-    // 3. Call the Gemini API (using Gemini 1.5 Flash for fast curriculum answers)
+    // Call Gemini API (Gemini 1.5 Flash)
     const geminiResponse = await fetch(
       `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${env.GEMINI_API_KEY}`,
       {
@@ -55,7 +54,7 @@ export async function onRequestPost(context) {
     const geminiData = await geminiResponse.json();
     const botResponse = geminiData.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I couldn't generate a response.";
 
-    // 4. Initialize Supabase client and save the conversation to chat_logs
+    // Initialize Supabase and log the conversation
     const supabase = createClient(env.SUPABASE_URL, env.SUPABASE_SECRET_KEY);
 
     const { error: dbError } = await supabase
@@ -66,7 +65,6 @@ export async function onRequestPost(context) {
       console.error("Database insert error:", dbError);
     }
 
-    // 5. Return the AI response back to your frontend JavaScript
     return new Response(JSON.stringify({ response: botResponse }), {
       status: 200,
       headers: { "Content-Type": "application/json" }
