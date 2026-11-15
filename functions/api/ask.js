@@ -1,3 +1,24 @@
+import { createClient } from '@supabase/supabase-js';
+
+export async function onRequestPost(context) {
+  const { request, env } = context;
+
+  // Quick check to see if Cloudflare is actually passing the variables
+  if (!env.SUPABASE_URL || !env.SUPABASE_SECRET_KEY) {
+    return new Response(
+      JSON.stringify({ 
+        error: "Missing keys in Pages env", 
+        availableKeys: Object.keys(env) 
+      }), 
+      { status: 500, headers: { "Content-Type": "application/json" } }
+    );
+  }
+
+  const supabase = createClient(env.SUPABASE_URL, env.SUPABASE_SECRET_KEY);
+  
+  // ... your existing Gemini and Supabase insert logic ...
+}
+
 export async function onRequest(context) {
   const { request, env } = context;
 
