@@ -1,0 +1,13 @@
+{
+  "routes": [
+    {
+      "routePath": "/api/ask",
+      "mountPath": "/api",
+      "method": "POST",
+      "module": [
+        "api/ask.js:onRequestPost"
+      ]
+    }
+  ],
+  "baseURL": "/"
+}

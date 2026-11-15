@@ -5,7 +5,6 @@ export async function onRequestPost(context) {
 
   try {
     const body = await request.json();
-    // Accept either 'prompt' or 'message' from the frontend payload
     const prompt = body.prompt || body.message;
 
     if (!prompt) {
@@ -24,9 +23,9 @@ export async function onRequestPost(context) {
       });
     }
 
-    // Call Gemini API (Gemini 1.5 Flash)
+    // Updated to use the active gemini-2.0-flash model endpoint
     const geminiResponse = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${env.GEMINI_API_KEY}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${env.GEMINI_API_KEY}`,
       {
         method: "POST",
         headers: {
@@ -65,7 +64,7 @@ export async function onRequestPost(context) {
       console.error("Database insert error:", dbError);
     }
 
-    return new Response(JSON.stringify({ response: botResponse }), {
+    return new Response(JSON.stringify({ reply: botResponse, response: botResponse }), {
       status: 200,
       headers: { "Content-Type": "application/json" }
     });
