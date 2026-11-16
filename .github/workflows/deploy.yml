@@ -1,9 +1,9 @@
-name: Deploy PyFlow Curriculum to Cloudflare Pages
+name: Deploy PyFlow Curriculum
 
 on:
   push:
     branches:
-      - main
+      - '**'
 
 jobs:
   deploy:
@@ -26,4 +26,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy public --project-name=pyflow-curriculum --branch=main
+          command: pages deploy public --project-name=pyflow-curriculum
