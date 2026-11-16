@@ -27,3 +27,8 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: pages deploy public --project-name=pyflow-curriculum
+          
+      - name: Run Security Audit
+        run: |
+          echo "Scanning dependencies for vulnerabilities..."
+          npm audit --audit-level=high || echo "Warning: Vulnerabilities found, review recommended"
