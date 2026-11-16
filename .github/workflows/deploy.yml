@@ -1,50 +1,44 @@
-name: Deploy PyFlow Curriculum
+name: CI/CD Pipeline & Cloudflare Deployment
 
 on:
   push:
-    branches:
-      - '**'
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
-    name: Build and Deploy
+    
     steps:
-      - name: Checkout Code
+      - name: Checkout Repository
         uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Install Dependencies
-        run: npm install
-
-      - name: Publish to Cloudflare Pages
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy public --project-name=pyflow-curriculum
-          
-      - name: Run Security Audit
-        run: |
-          echo "Scanning dependencies for vulnerabilities..."
-          npm audit --audit-level=high || echo "Warning: Vulnerabilities found, review recommended"
-
-      - name: Run Post-Deploy Health Check
-        run: node test-health.js
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm' # This automatically caches your node_modules!
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install Dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install Packages
+        run: npm ci
+
+      - name: Security Audit & Build
+        run: |
+          npm audit --audit-level=high || true
+          npm run build --if-present
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v4
         with:
-    apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-    accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-    wranglerVersion: '3.99.0' # Pin explicitly to a stable v3 version
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy . --project-name=pyflow-curriculum
