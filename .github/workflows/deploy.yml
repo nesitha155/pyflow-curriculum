@@ -27,5 +27,5 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: pages deploy public --project-name=pyflow-curriculum --branch=main
-          - name: Validate Backend Syntax
+      - name: Validate Backend Syntax
   run: node --check functions/api/ask.js
