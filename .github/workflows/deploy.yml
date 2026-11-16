@@ -32,3 +32,6 @@ jobs:
         run: |
           echo "Scanning dependencies for vulnerabilities..."
           npm audit --audit-level=high || echo "Warning: Vulnerabilities found, review recommended"
+
+      - name: Run Post-Deploy Health Check
+        run: node test-health.js
